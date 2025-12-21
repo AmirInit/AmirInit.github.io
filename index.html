@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="color-scheme" content="dark" />
+  <title>AmirInit | Security Researcher</title>
+  <meta name="description" content="Linux • Security • AI Research" />
+  <link rel="stylesheet" href="assets/css/site.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <audio id="bgm" preload="auto" loop>
+    <source src="assets/audio/bg.mp3" type="audio/mpeg" />
+  </audio>
+
+  <div id="gate" class="gate">
+    <div class="gate__glass">
+      <div class="gate__banner" id="typewriter"></div> 
+      <div class="gate__sub">Click to Initialize System</div>
+      <div class="gate__hint">/// Audio Enabled ///</div>
+    </div>
+  </div>
+
+  <main id="app" class="app" hidden>
+    <header class="panel panel--tight">
+      <pre class="ascii">
+      _           _       _ _   
+  __ _ _ __ ___ (_)_ __ (_) |_ 
+ / _` | '_ ` _ \| | '_ \| | __|
+| (_| | | | | | | | | | | | |_ 
+ \__,_|_| |_| |_|_|_| |_|_|\__|
+      </pre>
+
+      <div class="meta">
+        <div class="meta__line">
+          <span class="meta__tag">Linux</span>
+          <span class="meta__dot">·</span>
+          <span class="meta__tag">Security</span>
+          <span class="meta__dot">·</span>
+          <span class="meta__tag">AI</span>
+        </div>
+        <div class="meta__small">Amir-Parsa Rabiei · amirinit</div>
+      </div>
+    </header>
+
+    <section class="panel">
+      <div class="panel__head">
+        <h2 class="h2">Uplink</h2>
+        <div class="panel__note">secure connections</div>
+      </div>
+
+      <div class="grid">
+        <a class="tile" href="mailto:YOUR_EMAIL@GMAIL.COM">
+          <span class="tile__icon"><img src="assets/img/icons/email.svg" alt="Email"></span>
+          <span class="tile__label">Email</span>
+        </a>
+
+        <a class="tile" href="https://github.com/AmirInit" target="_blank">
+          <span class="tile__icon"><img src="assets/img/icons/github.svg" alt="GitHub"></span>
+          <span class="tile__label">GitHub</span>
+        </a>
+
+        <a class="tile" href="https://t.me/YOUR_ID" target="_blank">
+          <span class="tile__icon"><img src="assets/img/icons/telegram.svg" alt="Telegram"></span>
+          <span class="tile__label">Telegram</span>
+        </a>
+
+        <a class="tile" href="#" target="_blank">
+          <span class="tile__icon"><img src="assets/img/icons/discord.svg" alt="Discord"></span>
+          <span class="tile__label">Discord</span>
+        </a>
+
+        <a class="tile" href="#" target="_blank">
+          <span class="tile__icon"><img src="assets/img/icons/key.svg" alt="PGP Key"></span>
+          <span class="tile__label">PGP Key</span>
+        </a>
+
+        <a class="tile" href="#" target="_blank">
+          <span class="tile__icon"><img src="assets/img/icons/coin.svg" alt="Research"></span>
+          <span class="tile__label">Research</span>
+        </a>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="panel__head">
+        <h2 class="h2">System Load</h2>
+        <div class="panel__note">live metrics</div>
+      </div>
+      <div class="chartWrap">
+        <canvas id="dstat" height="240"></canvas>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="footer__left">
+        <span class="muted">© 2025 amirinit</span>
+      </div>
+      <div class="footer__right">
+        <button id="musicToggle" class="pill">Music: On</button>
+        <input id="musicVol" class="vol" type="range" min="0" max="100" value="30">
+      </div>
+    </footer>
+  </main>
+  
+  <script src="assets/js/site.js"></script>
+</body>
+</html>
