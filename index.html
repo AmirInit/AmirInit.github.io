@@ -4,9 +4,14 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="color-scheme" content="dark" />
+  <meta name="theme-color" content="#060607" />
   
   <title>root@amirinit:~#</title>
   <meta name="description" content="System Root Access - Linux • Security • AI Research" />
+  <meta property="og:title" content="AmirInit | Security Researcher" />
+  <meta property="og:description" content="AI Research, Linux, and Security Engineering." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://amirinit.github.io" />
   
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22 fill=%22%234af626%22 font-family=%22monospace%22 font-weight=%22bold%22>A</text></svg>">
   
@@ -15,7 +20,11 @@
 </head>
 <body>
 
-  <audio id="bgm" preload="auto" loop>
+  <noscript>
+    <div style="color:#4af626; padding:20px; font-family:monospace;">JavaScript required for system initialization.</div>
+  </noscript>
+
+  <audio id="bgm" preload="none" loop>
     <source src="assets/audio/bg.mp3" type="audio/mpeg" />
   </audio>
 
@@ -26,7 +35,7 @@
     <div id="boot-log"></div>
   </div>
 
-  <div id="gate" class="gate" hidden>
+  <div id="gate" class="gate" hidden tabindex="0" role="button" aria-label="Enter System">
     <div class="gate__content">
       <div class="gate__prompt blink">root@amirinit:~# ./initialize_system --force</div>
       <div class="gate__sub">[ SYSTEM HALTED. CLICK TO RESUME ]</div>
@@ -52,27 +61,27 @@
           <span class="tile__label">Email</span>
         </a>
 
-        <a class="tile" href="https://github.com/AmirInit" target="_blank">
+        <a class="tile" href="https://github.com/AmirInit" target="_blank" rel="noopener noreferrer">
           <span class="tile__icon"><img src="assets/img/icons/github.svg" alt="GitHub"></span>
           <span class="tile__label">GitHub</span>
         </a>
 
-        <a class="tile" href="https://t.me/YOUR_ID" target="_blank">
+        <a class="tile" href="https://t.me/YOUR_ID" target="_blank" rel="noopener noreferrer">
           <span class="tile__icon"><img src="assets/img/icons/telegram.svg" alt="Telegram"></span>
           <span class="tile__label">Telegram</span>
         </a>
 
-        <a class="tile" href="#" target="_blank">
+        <a class="tile" href="#" target="_blank" rel="noopener noreferrer">
           <span class="tile__icon"><img src="assets/img/icons/discord.svg" alt="Discord"></span>
           <span class="tile__label">Discord</span>
         </a>
 
-        <a class="tile" href="#" target="_blank">
+        <a class="tile" href="#" target="_blank" rel="noopener noreferrer">
           <span class="tile__icon"><img src="assets/img/icons/key.svg" alt="PGP"></span>
           <span class="tile__label">PGP Key</span>
         </a>
 
-        <a class="tile" href="#" target="_blank">
+        <a class="tile" href="#" target="_blank" rel="noopener noreferrer">
           <span class="tile__icon"><img src="assets/img/icons/coin.svg" alt="Research"></span>
           <span class="tile__label">Research</span>
         </a>
@@ -87,7 +96,8 @@
       <div class="stats-wrapper">
         <img src="https://github-readme-activity-graph.vercel.app/graph?username=AmirInit&bg_color=060607&color=b26cff&line=b26cff&point=ffffff&area=true&hide_border=true&hide_title=true" 
              alt="GitHub Activity Graph" 
-             class="activity-graph">
+             class="activity-graph"
+             loading="lazy">
       </div>
     </section>
 
@@ -96,10 +106,10 @@
         <span class="muted">kernel_v6.8.0 // secure_boot_enabled</span>
       </div>
       <div class="footer__right">
-        <button id="musicToggle" class="vol-btn" title="Toggle Sound">
+        <button id="musicToggle" class="vol-btn" title="Toggle Sound" aria-label="Toggle Sound">
            <svg class="speaker-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#e0e0e0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
         </button>
-        <input id="musicVol" class="vol" type="range" min="0" max="100" value="30">
+        <input id="musicVol" class="vol" type="range" min="0" max="100" value="30" aria-label="Volume">
       </div>
     </footer>
   </main>
