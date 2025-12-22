@@ -15,7 +15,7 @@ body {
   color: var(--text);
   font-family: 'Fira Code', monospace;
   overflow-x: hidden;
-  height: 100vh;
+  min-height: 100vh; /* Changed from height to min-height */
 }
 
 :focus-visible {

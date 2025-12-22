@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     let currentVol = savedVol ? parseFloat(savedVol) : 0.3;
     let isMuted = savedMuted === 'true';
+    let fadeRaf = 0;
 
     musicVol.value = currentVol * 100;
     updateMusicIcon(isMuted);
@@ -76,18 +77,47 @@ document.addEventListener('DOMContentLoaded', () => {
         gate.hidden = false;
         gate.style.display = 'flex';
         gate.focus();
+        
+        // Prepare audio
+        audio.muted = isMuted;
+        audio.volume = 0;
+    }
+
+    // Audio Fade Logic (RAF based)
+    function cancelFade() {
+        if (fadeRaf) cancelAnimationFrame(fadeRaf);
+        fadeRaf = 0;
+    }
+
+    function fadeAudioIn(target, ms = 1800) {
+        cancelFade();
+        const start = performance.now();
+        const from = audio.volume;
+
+        const step = (now) => {
+            if (audio.muted) return cancelFade();
+            const t = Math.min(1, (now - start) / ms);
+            const eased = t * t * (3 - 2 * t);
+            audio.volume = from + (target - from) * eased;
+            if (t < 1) fadeRaf = requestAnimationFrame(step);
+        };
+
+        fadeRaf = requestAnimationFrame(step);
     }
 
     function enterSystem() {
-        audio.muted = isMuted;
-        audio.volume = 0;
+        cancelFade();
         
         const playPromise = audio.play();
         if (playPromise !== undefined) {
             playPromise.then(() => {
                 if (!isMuted) fadeAudioIn(currentVol);
-            }).catch(error => {
-                console.log("Autoplay prevented:", error);
+            }).catch(() => {
+                // Keep UI consistent if play fails
+                isMuted = true;
+                audio.muted = true;
+                updateMusicIcon(true);
+                localStorage.setItem(STORAGE_KEY_MUTED, 'true');
             });
         }
         
@@ -102,37 +132,31 @@ document.addEventListener('DOMContentLoaded', () => {
     gate.addEventListener('click', enterSystem);
     gate.addEventListener('keydown', (e) => {
         if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault(); // Prevent scrolling
             enterSystem();
         }
     });
 
-    function fadeAudioIn(target) {
-        let vol = 0;
-        const interval = setInterval(() => {
-            if (vol < target) {
-                vol += 0.02;
-                audio.volume = Math.min(vol, target);
-            } else {
-                clearInterval(interval);
-                audio.volume = target;
-            }
-        }, 50);
-    }
-
     musicToggle.addEventListener('click', () => {
-        isMuted = !isMuted;
-        audio.muted = isMuted;
-        updateMusicIcon(isMuted);
-        
+        cancelFade();
+        if (audio.paused || audio.muted) {
+            isMuted = false;
+            audio.muted = false;
+            audio.volume = currentVol;
+            if (audio.paused) audio.play();
+            updateMusicIcon(false);
+        } else {
+            isMuted = true;
+            audio.muted = true;
+            updateMusicIcon(true);
+        }
         localStorage.setItem(STORAGE_KEY_MUTED, isMuted);
-        
-        if (!isMuted && audio.paused) audio.play();
     });
 
     musicVol.addEventListener('input', (e) => {
+        cancelFade();
         currentVol = parseFloat(e.target.value) / 100;
         audio.volume = currentVol;
-        
         localStorage.setItem(STORAGE_KEY_VOL, currentVol);
 
         if(isMuted && currentVol > 0) {
@@ -151,6 +175,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // Canvas Starfield (DPR Fixed)
     const canvas = document.getElementById('bg-canvas');
     if (canvas && !prefersReducedMotion) {
         const ctx = canvas.getContext('2d');
@@ -162,12 +187,13 @@ document.addEventListener('DOMContentLoaded', () => {
             width = window.innerWidth;
             height = window.innerHeight;
             
-            canvas.width = width * dpr;
-            canvas.height = height * dpr;
+            canvas.width = Math.floor(width * dpr);
+            canvas.height = Math.floor(height * dpr);
             canvas.style.width = `${width}px`;
             canvas.style.height = `${height}px`;
             
-            ctx.scale(dpr, dpr);
+            // Fix: Reset transform before scaling
+            ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
             
             initStars();
         }
