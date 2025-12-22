@@ -5,32 +5,27 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="color-scheme" content="dark" />
   
-  <title>AmirInit | Kernel Panic</title>
+  <title>root@amirinit:~#</title>
   <meta name="description" content="System Root Access - Linux • Security • AI Research" />
   
-  <!-- Stylesheet -->
-  <link rel="stylesheet" href="assets/css/site.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22 fill=%22%234af626%22 font-family=%22monospace%22 font-weight=%22bold%22>A</text></svg>">
   
-  <!-- Fonts: Fira Code for code, VT323 for terminal vibes -->
+  <link rel="stylesheet" href="assets/css/site.css" />
   <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&family=VT323&display=swap" rel="stylesheet">
 </head>
 <body>
 
-  <!-- Background Audio -->
   <audio id="bgm" preload="auto" loop>
     <source src="assets/audio/bg.mp3" type="audio/mpeg" />
   </audio>
 
-  <!-- Dynamic Background Canvas (Starfield) -->
   <canvas id="bg-canvas"></canvas>
 
-  <!-- Phase 1: Linux Boot Sequence -->
   <div id="boot-screen" class="crt">
     <div class="scanline"></div>
     <div id="boot-log"></div>
   </div>
 
-  <!-- Phase 2: The Gate (Click to Enter) -->
   <div id="gate" class="gate" hidden>
     <div class="gate__content">
       <div class="gate__prompt blink">root@amirinit:~# ./initialize_system --force</div>
@@ -38,10 +33,8 @@
     </div>
   </div>
 
-  <!-- Phase 3: Main Dashboard -->
   <main id="app" class="app" hidden>
     
-    <!-- Header with Professional ASCII -->
     <header class="header">
       <pre class="ascii-logo chroma-text">
     ___            _      ____      _ __ 
@@ -52,40 +45,33 @@
       </pre>
     </header>
 
-    <!-- Links Grid -->
     <section class="grid-section">
       <div class="grid">
-        <!-- 1. Email -->
         <a class="tile" href="mailto:YOUR_EMAIL@GMAIL.COM">
           <span class="tile__icon"><img src="assets/img/icons/email.svg" alt="Email"></span>
           <span class="tile__label">Email</span>
         </a>
 
-        <!-- 2. GitHub -->
         <a class="tile" href="https://github.com/AmirInit" target="_blank">
           <span class="tile__icon"><img src="assets/img/icons/github.svg" alt="GitHub"></span>
           <span class="tile__label">GitHub</span>
         </a>
 
-        <!-- 3. Telegram -->
         <a class="tile" href="https://t.me/YOUR_ID" target="_blank">
           <span class="tile__icon"><img src="assets/img/icons/telegram.svg" alt="Telegram"></span>
           <span class="tile__label">Telegram</span>
         </a>
 
-        <!-- 4. Discord -->
         <a class="tile" href="#" target="_blank">
           <span class="tile__icon"><img src="assets/img/icons/discord.svg" alt="Discord"></span>
           <span class="tile__label">Discord</span>
         </a>
 
-        <!-- 5. PGP Key -->
         <a class="tile" href="#" target="_blank">
           <span class="tile__icon"><img src="assets/img/icons/key.svg" alt="PGP"></span>
           <span class="tile__label">PGP Key</span>
         </a>
 
-        <!-- 6. Research/Scholar -->
         <a class="tile" href="#" target="_blank">
           <span class="tile__icon"><img src="assets/img/icons/coin.svg" alt="Research"></span>
           <span class="tile__label">Research</span>
@@ -93,31 +79,26 @@
       </div>
     </section>
 
-    <!-- Real GitHub Stats (Activity Graph) -->
     <section class="stats-section">
       <div class="panel__head">
         <h2 class="h2">> /var/log/activity</h2>
         <div class="panel__note">git_commit_stream</div>
       </div>
       <div class="stats-wrapper">
-        <!-- Live GitHub Activity Graph -->
-        <img src="https://github-readme-activity-graph.vercel.app/graph?username=AmirInit&bg_color=060607&color=b26cff&line=b26cff&point=ffffff&area=true&hide_border=true" 
+        <img src="https://github-readme-activity-graph.vercel.app/graph?username=AmirInit&bg_color=060607&color=b26cff&line=b26cff&point=ffffff&area=true&hide_border=true&hide_title=true" 
              alt="GitHub Activity Graph" 
              class="activity-graph">
       </div>
     </section>
 
-    <!-- Footer -->
     <footer class="footer">
       <div class="footer__left">
         <span class="muted">kernel_v6.8.0 // secure_boot_enabled</span>
       </div>
       <div class="footer__right">
-        <!-- Minimal Speaker Icon -->
-        <svg class="speaker-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-          <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
-        </svg>
+        <button id="musicToggle" class="vol-btn" title="Toggle Sound">
+           <svg class="speaker-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#e0e0e0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+        </button>
         <input id="musicVol" class="vol" type="range" min="0" max="100" value="30">
       </div>
     </footer>

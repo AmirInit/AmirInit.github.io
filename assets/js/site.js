@@ -1,13 +1,12 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // DOM Elements
     const bootScreen = document.getElementById('boot-screen');
     const bootLog = document.getElementById('boot-log');
     const gate = document.getElementById('gate');
     const app = document.getElementById('app');
     const audio = document.getElementById('bgm');
+    const musicToggle = document.getElementById('musicToggle');
     const musicVol = document.getElementById('musicVol');
 
-    // --- Phase 1: Boot Sequence (Realistic Linux Boot) ---
     const bootMessages = [
         "Initializing kernel...",
         "ACPI: Early table checksum verification disabled",
@@ -28,7 +27,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let delay = 0;
     
-    // Add log lines with hex addresses
     function addLog(msg, isLast = false) {
         setTimeout(() => {
             const line = document.createElement('div');
@@ -49,43 +47,59 @@ document.addEventListener('DOMContentLoaded', () => {
                 setTimeout(showGate, 800);
             }
         }, delay);
-        delay += Math.random() * 200 + 50; // Random delay between lines
+        delay += Math.random() * 200 + 50; 
     }
 
-    // Execute Boot
     bootMessages.forEach((msg, index) => {
         addLog(msg, index === bootMessages.length - 1);
     });
 
-    // --- Phase 2: Gate Transition ---
     function showGate() {
         bootScreen.style.display = 'none'; 
         gate.hidden = false;
         gate.style.display = 'flex';
     }
 
-    // --- Phase 3: Enter App & Audio ---
     gate.addEventListener('click', () => {
-        // Play Audio
-        audio.volume = 0.3;
+        audio.volume = 0.5;
         audio.play().catch(e => console.log("Audio requires user interaction"));
+        updateMusicIcon(false); 
         
-        // Animation
         gate.style.opacity = '0';
         setTimeout(() => {
             gate.style.display = 'none';
             app.hidden = false;
-            // Fade in app
             setTimeout(() => { app.style.opacity = '1'; }, 50);
         }, 500);
     });
 
-    // Volume Control
-    musicVol.addEventListener('input', (e) => {
-        audio.volume = e.target.value / 100;
+    musicToggle.addEventListener('click', () => {
+        if (audio.paused || audio.muted) {
+            audio.muted = false;
+            if (audio.paused) audio.play();
+            updateMusicIcon(false);
+        } else {
+            audio.muted = true;
+            updateMusicIcon(true);
+        }
     });
 
-    // --- Background Canvas (Starfield Effect) ---
+    musicVol.addEventListener('input', (e) => {
+        audio.volume = e.target.value / 100;
+        if(audio.muted && audio.volume > 0) {
+            audio.muted = false;
+            updateMusicIcon(false);
+        }
+    });
+
+    function updateMusicIcon(isMuted) {
+        if (isMuted) {
+            musicToggle.innerHTML = `<svg class="speaker-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#e0e0e0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line></svg>`;
+        } else {
+            musicToggle.innerHTML = `<svg class="speaker-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#e0e0e0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>`;
+        }
+    }
+
     const canvas = document.getElementById('bg-canvas');
     if (canvas) {
         const ctx = canvas.getContext('2d');
@@ -102,7 +116,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         function initStars() {
             stars = [];
-            const count = Math.floor(width * height / 10000); // Density
+            const count = Math.floor(width * height / 10000); 
             for (let i = 0; i < count; i++) {
                 stars.push({
                     x: Math.random() * width,
@@ -121,8 +135,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 ctx.beginPath();
                 ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
                 ctx.fill();
-                
-                // Move stars slowly upwards
                 star.y -= star.speed;
                 if (star.y < 0) star.y = height;
             });
