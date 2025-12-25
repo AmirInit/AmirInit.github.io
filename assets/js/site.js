@@ -7,6 +7,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const musicToggle = document.getElementById('musicToggle');
     const musicVol = document.getElementById('musicVol');
 
+    // Modal Elements
+    const donateBtn = document.getElementById('donate-btn');
+    const modal = document.getElementById('monero-modal');
+    const closeModal = document.getElementById('close-modal');
+    const copyBtn = document.getElementById('copy-btn');
+    const xmrAddr = document.getElementById('xmr-addr');
+    const copyMsg = document.getElementById('copy-msg');
+
     const STORAGE_KEY_VOL = 'amirinit_vol';
     const STORAGE_KEY_MUTED = 'amirinit_muted';
 
@@ -78,12 +86,10 @@ document.addEventListener('DOMContentLoaded', () => {
         gate.style.display = 'flex';
         gate.focus();
         
-        // Prepare audio
         audio.muted = isMuted;
         audio.volume = 0;
     }
 
-    // Audio Fade Logic (RAF based)
     function cancelFade() {
         if (fadeRaf) cancelAnimationFrame(fadeRaf);
         fadeRaf = 0;
@@ -113,7 +119,6 @@ document.addEventListener('DOMContentLoaded', () => {
             playPromise.then(() => {
                 if (!isMuted) fadeAudioIn(currentVol);
             }).catch(() => {
-                // Keep UI consistent if play fails
                 isMuted = true;
                 audio.muted = true;
                 updateMusicIcon(true);
@@ -132,7 +137,7 @@ document.addEventListener('DOMContentLoaded', () => {
     gate.addEventListener('click', enterSystem);
     gate.addEventListener('keydown', (e) => {
         if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault(); // Prevent scrolling
+            e.preventDefault();
             enterSystem();
         }
     });
@@ -175,6 +180,38 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // --- Modal Logic ---
+    if(donateBtn) {
+        donateBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            modal.hidden = false;
+        });
+    }
+
+    if(closeModal) {
+        closeModal.addEventListener('click', () => {
+            modal.hidden = true;
+        });
+    }
+
+    window.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            modal.hidden = true;
+        }
+    });
+
+    if(copyBtn) {
+        copyBtn.addEventListener('click', () => {
+            const addr = xmrAddr.innerText;
+            navigator.clipboard.writeText(addr).then(() => {
+                copyMsg.classList.add('visible');
+                setTimeout(() => {
+                    copyMsg.classList.remove('visible');
+                }, 2000);
+            });
+        });
+    }
+
     // Canvas Starfield (DPR Fixed)
     const canvas = document.getElementById('bg-canvas');
     if (canvas && !prefersReducedMotion) {
@@ -192,7 +229,6 @@ document.addEventListener('DOMContentLoaded', () => {
             canvas.style.width = `${width}px`;
             canvas.style.height = `${height}px`;
             
-            // Fix: Reset transform before scaling
             ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
             
             initStars();

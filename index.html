@@ -42,6 +42,32 @@
     </div>
   </div>
 
+  <!-- Monero Modal -->
+  <div id="monero-modal" class="modal" hidden>
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title">>> Monero Donation</h3>
+        <button id="close-modal" class="close-btn">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p class="modal-desc">Support privacy & open research.</p>
+        
+        <!-- Generated QR Code for your XMR Address -->
+        <div class="qr-wrapper">
+           <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=monero:48aepDYeCBYPrqVbxCap1YiNKHoQP8N5phhEEEPECyUAVs5VULNqTjzVVXKRQmW8UmjdAFgFQ5qZkfcpELZpbnKwCxKvxVi&bgcolor=060607&color=b26cff&margin=2" alt="XMR QR" class="qr-code">
+        </div>
+
+        <div class="address-box">
+          <code id="xmr-addr">48aepDYeCBYPrqVbxCap1YiNKHoQP8N5phhEEEPECyUAVs5VULNqTjzVVXKRQmW8UmjdAFgFQ5qZkfcpELZpbnKwCxKvxVi</code>
+          <button id="copy-btn" class="copy-btn" title="Copy Address">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          </button>
+        </div>
+        <div id="copy-msg" class="copy-msg">Address Copied!</div>
+      </div>
+    </div>
+  </div>
+
   <main id="app" class="app" hidden>
     
     <header class="header">
@@ -56,7 +82,7 @@
 
     <section class="grid-section">
       <div class="grid">
-        <a class="tile" href="mailto:YOUR_EMAIL@GMAIL.COM">
+        <a class="tile" href="mailto:amirparsarabii@gmail.com">
           <span class="tile__icon"><img src="assets/img/icons/email.svg" alt="Email"></span>
           <span class="tile__label">Email</span>
         </a>
@@ -66,25 +92,26 @@
           <span class="tile__label">GitHub</span>
         </a>
 
-        <a class="tile" href="https://t.me/YOUR_ID" target="_blank" rel="noopener noreferrer">
+        <a class="tile" href="https://t.me/AP_2050" target="_blank" rel="noopener noreferrer">
           <span class="tile__icon"><img src="assets/img/icons/telegram.svg" alt="Telegram"></span>
           <span class="tile__label">Telegram</span>
         </a>
 
-        <a class="tile" href="#" target="_blank" rel="noopener noreferrer">
+        <a class="tile" href="https://discord.com/users/1062013918853210142" target="_blank" rel="noopener noreferrer">
           <span class="tile__icon"><img src="assets/img/icons/discord.svg" alt="Discord"></span>
           <span class="tile__label">Discord</span>
         </a>
 
-        <a class="tile" href="#" target="_blank" rel="noopener noreferrer">
+        <a class="tile" href="https://keyoxide.org/4DC5940B4423F1CF7AC8D633B195B11B9A7C37E4" target="_blank" rel="noopener noreferrer">
           <span class="tile__icon"><img src="assets/img/icons/key.svg" alt="PGP"></span>
           <span class="tile__label">PGP Key</span>
         </a>
 
-        <a class="tile" href="#" target="_blank" rel="noopener noreferrer">
-          <span class="tile__icon"><img src="assets/img/icons/coin.svg" alt="Research"></span>
-          <span class="tile__label">Research</span>
-        </a>
+        <!-- Monero Button (Triggers Modal) -->
+        <button id="donate-btn" class="tile btn-tile">
+          <span class="tile__icon"><img src="assets/img/icons/coin.svg" alt="XMR"></span>
+          <span class="tile__label">Donate XMR</span>
+        </button>
       </div>
     </section>
 
@@ -106,7 +133,7 @@
         <span class="muted">kernel_v6.8.0 // secure_boot_enabled</span>
       </div>
       <div class="footer__right">
-        <button id="musicToggle" class="vol-btn" type="button" title="Toggle Sound" aria-label="Toggle Sound">
+        <button id="musicToggle" class="vol-btn" title="Toggle Sound" aria-label="Toggle Sound">
            <svg class="speaker-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#e0e0e0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
         </button>
         <input id="musicVol" class="vol" type="range" min="0" max="100" value="30" aria-label="Volume">

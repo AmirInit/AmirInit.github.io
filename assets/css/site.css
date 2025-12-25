@@ -15,7 +15,7 @@ body {
   color: var(--text);
   font-family: 'Fira Code', monospace;
   overflow-x: hidden;
-  min-height: 100vh; /* Changed from height to min-height */
+  min-height: 100vh;
 }
 
 :focus-visible {
@@ -176,6 +176,14 @@ body {
 }
 .tile:hover::before { opacity: 1; }
 
+.btn-tile {
+  width: 100%;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: inherit;
+  text-align: left;
+}
+
 .tile__icon img { width: 22px; height: 22px; filter: drop-shadow(0 0 5px rgba(255,255,255,0.2)); }
 .tile__label { font-size: 14px; font-weight: 500; }
 
@@ -231,10 +239,62 @@ body {
   box-shadow: 0 0 10px var(--accent);
 }
 
+/* Modal Styles */
+.modal {
+  position: fixed; inset: 0; z-index: 1000;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(0,0,0,0.8);
+  backdrop-filter: blur(5px);
+  animation: fadeIn 0.2s ease;
+}
+.modal[hidden] { display: none; }
+
+.modal-content {
+  background: var(--bg);
+  border: 1px solid var(--accent);
+  border-radius: 12px;
+  padding: 20px;
+  width: 90%; max-width: 400px;
+  box-shadow: 0 0 20px rgba(178, 108, 255, 0.2);
+}
+
+.modal-header {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 20px; border-bottom: 1px solid var(--border); padding-bottom: 10px;
+}
+.modal-title { margin: 0; font-size: 16px; color: var(--accent); }
+.close-btn { background: none; border: none; color: #666; font-size: 24px; cursor: pointer; }
+.close-btn:hover { color: #fff; }
+
+.qr-wrapper { text-align: center; margin: 20px 0; }
+.qr-code { width: 150px; height: 150px; border-radius: 8px; border: 4px solid #fff; }
+
+.address-box {
+  display: flex; align-items: center; gap: 10px;
+  background: rgba(255,255,255,0.05); padding: 10px;
+  border-radius: 6px; border: 1px dashed var(--border);
+}
+.address-box code {
+  font-size: 10px; color: #888; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.copy-btn {
+  background: none; border: none; color: var(--accent); cursor: pointer;
+}
+.copy-btn:hover { color: #fff; }
+
+.copy-msg {
+  text-align: center; font-size: 12px; color: var(--term-green);
+  margin-top: 10px; opacity: 0; transition: opacity 0.2s;
+}
+.copy-msg.visible { opacity: 1; }
+
+@keyframes fadeIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+
 @media (prefers-reduced-motion: reduce) {
   .scanline { display: none; }
   .blink { animation: none; }
   .chroma-text { animation: none; }
   .tile:hover { transform: none; }
   #bg-canvas { display: none; }
+  .modal { animation: none; }
 }
