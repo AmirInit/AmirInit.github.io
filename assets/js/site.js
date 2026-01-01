@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const musicVol = document.getElementById('musicVol');
     const toastContainer = document.getElementById('toast-container');
 
-    // Modal & Buttons
+    // Modal & Discord Buttons
     const donateBtn = document.getElementById('donate-btn');
     const modal = document.getElementById('monero-modal');
     const closeModal = document.getElementById('close-modal');
@@ -31,21 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
     musicVol.value = currentVol * 100;
     updateMusicIcon(isMuted);
 
-    // Toast Function
-    function showToast(message, icon = '✅') {
-        const toast = document.createElement('div');
-        toast.className = 'toast';
-        toast.innerHTML = `<span class="toast-icon">${icon}</span> <span>${message}</span>`;
-        toastContainer.appendChild(toast);
-
-        // Remove after 3s
-        setTimeout(() => {
-            toast.classList.add('hiding');
-            toast.addEventListener('animationend', () => toast.remove());
-        }, 3000);
-    }
-
-    // Boot Sequence
+    // --- Boot Sequence ---
     const bootMessages = [
         "Initializing kernel...", "ACPI: Early table checksum verification disabled",
         "ACPI: RSDP 0x00000000000F68D0 000024 (v02 BOCHS )", "DMAR: Host address width 39",
@@ -56,6 +42,8 @@ document.addEventListener('DOMContentLoaded', () => {
         "Decrypting keys...", "Reached target Graphical Interface.", "System Ready."
     ];
 
+    let delay = 0;
+    
     function addLog(msg, isLast = false) {
         setTimeout(() => {
             const line = document.createElement('div');
@@ -72,19 +60,26 @@ document.addEventListener('DOMContentLoaded', () => {
         delay += Math.random() * 200 + 50; 
     }
 
-    let delay = 0;
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (prefersReducedMotion) { showGate(); } 
     else { bootMessages.forEach((msg, index) => { addLog(msg, index === bootMessages.length - 1); }); }
 
     function showGate() {
-        bootScreen.style.display = 'none'; gate.hidden = false; gate.style.display = 'flex'; gate.focus();
-        audio.muted = isMuted; audio.volume = 0;
+        bootScreen.style.display = 'none'; 
+        gate.hidden = false; 
+        gate.style.display = 'flex'; 
+        gate.focus();
+        audio.muted = isMuted; 
+        audio.volume = 0;
     }
 
+    // Audio Functions
     function cancelFade() { if (fadeRaf) cancelAnimationFrame(fadeRaf); fadeRaf = 0; }
+
     function fadeAudioIn(target, ms = 1800) {
-        cancelFade(); const start = performance.now(); const from = audio.volume;
+        cancelFade();
+        const start = performance.now();
+        const from = audio.volume;
         const step = (now) => {
             if (audio.muted) return cancelFade();
             const t = Math.min(1, (now - start) / ms);
@@ -103,7 +98,11 @@ document.addEventListener('DOMContentLoaded', () => {
             .catch(() => { isMuted = true; audio.muted = true; updateMusicIcon(true); localStorage.setItem(STORAGE_KEY_MUTED, 'true'); });
         }
         gate.style.opacity = '0';
-        setTimeout(() => { gate.style.display = 'none'; app.hidden = false; setTimeout(() => { app.style.opacity = '1'; }, 50); }, 500);
+        setTimeout(() => { 
+            gate.style.display = 'none'; 
+            app.hidden = false; 
+            setTimeout(() => { app.style.opacity = '1'; }, 50); 
+        }, 500);
     }
 
     gate.addEventListener('click', enterSystem);
@@ -129,10 +128,37 @@ document.addEventListener('DOMContentLoaded', () => {
         musicToggle.innerHTML = `<svg class="speaker-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#e0e0e0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${path}</svg>`;
     }
 
-    // Modal
-    if(donateBtn) { donateBtn.addEventListener('click', (e) => { e.preventDefault(); modal.hidden = false; }); }
-    if(closeModal) { closeModal.addEventListener('click', () => { modal.hidden = true; }); }
-    window.addEventListener('click', (e) => { if (e.target === modal) { modal.hidden = true; } });
+    // --- Toast Function ---
+    function showToast(message, icon = '✅') {
+        const toast = document.createElement('div');
+        toast.className = 'toast';
+        toast.innerHTML = `<span class="toast-icon">${icon}</span> <span>${message}</span>`;
+        toastContainer.appendChild(toast);
+
+        // Remove after 3s
+        setTimeout(() => {
+            toast.classList.add('hiding');
+            toast.addEventListener('animationend', () => toast.remove());
+        }, 3000);
+    }
+
+    // --- Monero Modal Logic ---
+    if(donateBtn) { 
+        donateBtn.addEventListener('click', (e) => { 
+            e.preventDefault(); 
+            modal.hidden = false; 
+        }); 
+    }
+    if(closeModal) { 
+        closeModal.addEventListener('click', () => { 
+            modal.hidden = true; 
+        }); 
+    }
+    window.addEventListener('click', (e) => { 
+        if (e.target === modal) { 
+            modal.hidden = true; 
+        } 
+    });
 
     if(copyXmrBtn) {
         copyXmrBtn.addEventListener('click', () => {
@@ -145,22 +171,14 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Discord Copy
+    // --- Discord Copy Logic ---
     if(discordBtn) {
         discordBtn.addEventListener('click', () => {
-            // const userId = discordBtn.getAttribute('data-userid'); // Not used for copy, just username
-            const textToCopy = "amirinit"; // Your username
+            const textToCopy = "amirinit"; // Your discord username
             navigator.clipboard.writeText(textToCopy).then(() => {
-                const label = discordBtn.querySelector('.tile__label');
-                const originalText = label.innerText;
-                
-                label.innerText = "Copied Username!";
-                label.style.color = "#4af626";
-                
-                setTimeout(() => {
-                    label.innerText = originalText;
-                    label.style.color = "";
-                }, 2000);
+                showToast(`Copied Username: amirinit`, '👾');
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
             });
         });
     }
