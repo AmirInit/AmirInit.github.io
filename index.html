@@ -7,8 +7,8 @@
   <meta name="theme-color" content="#060607" />
   
   <title>root@amirinit:~#</title>
-  <meta name="description" content="System Root Access - Linux • Security • AI Research" />
-  <meta property="og:title" content="AmirInit | Security Researcher" />
+  <meta name="description" content="System Root Access - AI • Linux • Security" />
+  <meta property="og:title" content="AmirInit | Researcher" />
   <meta property="og:description" content="AI Research, Linux, and Security Engineering." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://amirinit.github.io" />
@@ -42,6 +42,9 @@
     </div>
   </div>
 
+  <!-- Toast Container for Notifications -->
+  <div id="toast-container" class="toast-container"></div>
+
   <!-- Monero Modal -->
   <div id="monero-modal" class="modal" hidden>
     <div class="modal-content">
@@ -52,14 +55,14 @@
       <div class="modal-body">
         <p class="modal-desc">Support privacy & open research.</p>
         
-        <!-- Generated QR Code for your XMR Address -->
+        <!-- Generated QR Code with White Background (Scannable) -->
         <div class="qr-wrapper">
-           <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=monero:48aepDYeCBYPrqVbxCap1YiNKHoQP8N5phhEEEPECyUAVs5VULNqTjzVVXKRQmW8UmjdAFgFQ5qZkfcpELZpbnKwCxKvxVi&bgcolor=060607&color=b26cff&margin=2" alt="XMR QR" class="qr-code">
+           <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=monero:48aepDYeCBYPrqVbxCap1YiNKHoQP8N5phhEEEPECyUAVs5VULNqTjzVVXKRQmW8UmjdAFgFQ5qZkfcpELZpbnKwCxKvxVi&bgcolor=ffffff&color=000000&margin=10" alt="XMR QR" class="qr-code">
         </div>
 
         <div class="address-box">
           <code id="xmr-addr">48aepDYeCBYPrqVbxCap1YiNKHoQP8N5phhEEEPECyUAVs5VULNqTjzVVXKRQmW8UmjdAFgFQ5qZkfcpELZpbnKwCxKvxVi</code>
-          <button id="copy-btn" class="copy-btn" title="Copy Address">
+          <button id="copy-xmr-btn" class="copy-btn" title="Copy Address">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
           </button>
         </div>
@@ -78,6 +81,13 @@
  / ___ |/ / / / / / /  _/ // / / / / /_  
 /_/  |_/_/ /_/ /_/_/  /___/_/ /_/_/\__/  
       </pre>
+
+      <!-- IDEA B: Status Bar -->
+      <div class="status-bar">
+        <span class="status-tag">[ SCIENTISM ]</span>
+        <span class="status-tag">[ E/ACC ]</span>
+        <span class="status-tag">[ UTILITARIANISM ]</span>
+      </div>
     </header>
 
     <section class="grid-section">
@@ -97,17 +107,17 @@
           <span class="tile__label">Telegram</span>
         </a>
 
-        <a class="tile" href="https://discord.com/users/1062013918853210142" target="_blank" rel="noopener noreferrer">
+        <!-- Discord Button (Copy Logic) -->
+        <button id="discord-btn" class="tile btn-tile" data-userid="1062013918853210142">
           <span class="tile__icon"><img src="assets/img/icons/discord.svg" alt="Discord"></span>
           <span class="tile__label">Discord</span>
-        </a>
+        </button>
 
         <a class="tile" href="https://keyoxide.org/4DC5940B4423F1CF7AC8D633B195B11B9A7C37E4" target="_blank" rel="noopener noreferrer">
           <span class="tile__icon"><img src="assets/img/icons/key.svg" alt="PGP"></span>
           <span class="tile__label">PGP Key</span>
         </a>
 
-        <!-- Monero Button (Triggers Modal) -->
         <button id="donate-btn" class="tile btn-tile">
           <span class="tile__icon"><img src="assets/img/icons/coin.svg" alt="XMR"></span>
           <span class="tile__label">Donate XMR</span>
@@ -141,6 +151,7 @@
     </footer>
   </main>
   
+  <script src="assets/js/starfield.js"></script>
   <script src="assets/js/site.js"></script>
 </body>
 </html>
