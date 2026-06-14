@@ -4,7 +4,7 @@
   --accent: #b26cff;
   --text: #e0e0e0;
   --border: rgba(255, 255, 255, 0.1);
-  --glass: rgba(0, 0, 0, 0.6);
+  --glass: rgba(10, 10, 12, 0.7);
   --toast-bg: #111;
 }
 
@@ -111,11 +111,15 @@ body {
 .tile {
   background: var(--glass); border: 1px solid var(--border); padding: 18px; border-radius: 8px;
   display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--text);
-  transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94); position: relative; overflow: hidden;
+  transition: box-shadow 0.3s ease, border-color 0.3s ease, transform 0.1s ease-out; position: relative; overflow: hidden;
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  transform: perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1);
+  transform-style: preserve-3d;
 }
 .tile:hover {
   background: rgba(255, 255, 255, 0.08); border-color: var(--accent);
-  transform: translateY(-4px); box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+  box-shadow: 0 5px 20px rgba(178, 108, 255, 0.4);
 }
 .tile::before {
   content: ""; position: absolute; top: 0; left: 0; width: 2px; height: 100%;
@@ -204,6 +208,43 @@ body {
 @keyframes fadeIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
 @keyframes slideIn { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
 @keyframes slideOut { to { transform: translateX(100%); opacity: 0; } }
+
+/* Prototype A: Drawer Styles */
+.drawer-overlay {
+  position: fixed; inset: 0; z-index: 1000;
+  background: rgba(0,0,0,0.6); backdrop-filter: blur(5px);
+  transition: opacity 0.3s ease; opacity: 0;
+}
+.drawer-overlay.active { opacity: 1; }
+
+.drawer {
+  position: fixed; top: 0; right: 0; bottom: 0; width: 100%; max-width: 400px;
+  background: var(--glass); backdrop-filter: blur(15px); border-left: 1px solid var(--border);
+  z-index: 1001; padding: 30px; display: flex; flex-direction: column; gap: 25px;
+  transform: translateX(100%); transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  box-shadow: -10px 0 30px rgba(0,0,0,0.8); overflow-y: auto;
+}
+.drawer.active { transform: translateX(0); }
+.drawer[hidden], .drawer-overlay[hidden] { display: none; }
+
+.drawer-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); padding-bottom: 15px; }
+.drawer-title { margin: 0; font-size: 18px; color: var(--accent); font-family: 'Fira Code', monospace; }
+
+.profile-pic-container { display: flex; justify-content: center; margin-bottom: 10px; }
+.avatar-placeholder { width: 100px; height: 100px; border-radius: 50%; background: rgba(255,255,255,0.05); border: 2px dashed var(--accent); display: flex; align-items: center; justify-content: center; padding: 25px; }
+
+.bio-section { color: #ccc; font-size: 14px; line-height: 1.6; text-align: center; }
+
+.skills-section { background: rgba(0,0,0,0.4); border-radius: 8px; padding: 15px; border: 1px solid rgba(255,255,255,0.05); }
+.skills-title { font-size: 13px; color: var(--term-green); margin: 0 0 10px 0; font-family: 'Fira Code', monospace; }
+.skills-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+.skill-tag { background: rgba(178, 108, 255, 0.1); color: #e0e0e0; font-size: 12px; padding: 5px 10px; border-radius: 4px; border: 1px solid rgba(178, 108, 255, 0.3); transition: all 0.2s; cursor: default; }
+.skill-tag:hover { background: rgba(178, 108, 255, 0.3); border-color: var(--accent); box-shadow: 0 0 10px rgba(178, 108, 255, 0.4); }
+
+.drawer-footer { margin-top: auto; padding-top: 20px; }
+.download-btn { display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; background: transparent; color: var(--accent); border: 1px solid var(--accent); padding: 15px; border-radius: 6px; font-family: 'Fira Code', monospace; font-size: 14px; text-decoration: none; font-weight: bold; transition: all 0.3s; text-transform: uppercase; letter-spacing: 1px; }
+.download-btn:hover { background: rgba(178, 108, 255, 0.15); box-shadow: 0 0 15px rgba(178, 108, 255, 0.5); text-shadow: 0 0 5px rgba(178, 108, 255, 0.8); }
+
 
 @media (prefers-reduced-motion: reduce) {
   .scanline { display: none; } .blink { animation: none; } .chroma-text { animation: none; }

@@ -19,6 +19,12 @@ document.addEventListener('DOMContentLoaded', () => {
     
     const discordBtn = document.getElementById('discord-btn');
 
+    // Prototype A Elements
+    const whoamiBtn = document.getElementById('whoami-btn');
+    const drawerOverlay = document.getElementById('drawer-overlay');
+    const whoamiDrawer = document.getElementById('whoami-drawer');
+    const closeDrawerBtn = document.getElementById('close-drawer');
+
     // Audio Init
     const STORAGE_KEY_VOL = 'amirinit_vol';
     const STORAGE_KEY_MUTED = 'amirinit_muted';
@@ -182,4 +188,75 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
+
+    // --- 3D Tilt Tracking Effect ---
+    const tiles = document.querySelectorAll('.tile');
+
+    tiles.forEach(tile => {
+        tile.addEventListener('mousemove', (e) => {
+            const rect = tile.getBoundingClientRect();
+            const x = e.clientX - rect.left; // x position within the element
+            const y = e.clientY - rect.top;  // y position within the element
+
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+
+            // Calculate tilt angle. Adjust the divisor for sensitivity (higher = less sensitive).
+            const rotateX = ((y - centerY) / centerY) * -8;
+            const rotateY = ((x - centerX) / centerX) * 8;
+
+            tile.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+        });
+
+        tile.addEventListener('mouseleave', () => {
+            tile.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+        });
+    });
+
+    // --- Prototype A: Drawer Logic ---
+    function openDrawer() {
+        drawerOverlay.hidden = false;
+        whoamiDrawer.hidden = false;
+
+        // Force reflow
+        void drawerOverlay.offsetWidth;
+
+        drawerOverlay.classList.add('active');
+        whoamiDrawer.classList.add('active');
+
+        // Prevent background scrolling
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeDrawer() {
+        drawerOverlay.classList.remove('active');
+        whoamiDrawer.classList.remove('active');
+
+        // Wait for transition
+        setTimeout(() => {
+            drawerOverlay.hidden = true;
+            whoamiDrawer.hidden = true;
+            document.body.style.overflow = '';
+        }, 400); // Matches CSS transition duration
+    }
+
+    if (whoamiBtn) {
+        whoamiBtn.addEventListener('click', openDrawer);
+    }
+
+    if (closeDrawerBtn) {
+        closeDrawerBtn.addEventListener('click', closeDrawer);
+    }
+
+    if (drawerOverlay) {
+        drawerOverlay.addEventListener('click', closeDrawer);
+    }
+
+    // Close drawer on escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && whoamiDrawer && !whoamiDrawer.hidden) {
+            closeDrawer();
+        }
+    });
+
 });
