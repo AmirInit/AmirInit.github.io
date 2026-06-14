@@ -19,11 +19,11 @@ document.addEventListener('DOMContentLoaded', () => {
     
     const discordBtn = document.getElementById('discord-btn');
 
-    // Prototype A Elements
-    const whoamiBtn = document.getElementById('whoami-btn');
-    const drawerOverlay = document.getElementById('drawer-overlay');
-    const whoamiDrawer = document.getElementById('whoami-drawer');
-    const closeDrawerBtn = document.getElementById('close-drawer');
+    // Prototype B Elements
+    const termTrigger = document.getElementById('term-trigger');
+    const termAccordion = document.getElementById('term-accordion');
+    const typeOutput = document.getElementById('typewriter-output');
+    const termAction = document.getElementById('term-download-action');
 
     // Audio Init
     const STORAGE_KEY_VOL = 'amirinit_vol';
@@ -213,50 +213,72 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // --- Prototype A: Drawer Logic ---
-    function openDrawer() {
-        drawerOverlay.hidden = false;
-        whoamiDrawer.hidden = false;
+    // --- Prototype B: Terminal Accordion & Typewriter Logic ---
+    const identityPayload = `{
+  <span class="json-key">"name"</span>: <span class="json-string">"Amir Parsa"</span>,
+  <span class="json-key">"role"</span>: <span class="json-string">"AI Researcher & Systems Engineer"</span>,
+  <span class="json-key">"skills"</span>: <span class="json-bracket">[</span>
+    <span class="json-string">"LLM Fine-tuning"</span>,
+    <span class="json-string">"Docker"</span>,
+    <span class="json-string">"Podman"</span>,
+    <span class="json-string">"Python"</span>,
+    <span class="json-string">"Linux Kernel"</span>
+  <span class="json-bracket">]</span>,
+  <span class="json-key">"status"</span>: <span class="json-string">"Operational"</span>
+}`;
 
-        // Force reflow
-        void drawerOverlay.offsetWidth;
+    let isTyping = false;
+    let hasTyped = false;
 
-        drawerOverlay.classList.add('active');
-        whoamiDrawer.classList.add('active');
-
-        // Prevent background scrolling
-        document.body.style.overflow = 'hidden';
-    }
-
-    function closeDrawer() {
-        drawerOverlay.classList.remove('active');
-        whoamiDrawer.classList.remove('active');
-
-        // Wait for transition
-        setTimeout(() => {
-            drawerOverlay.hidden = true;
-            whoamiDrawer.hidden = true;
-            document.body.style.overflow = '';
-        }, 400); // Matches CSS transition duration
-    }
-
-    if (whoamiBtn) {
-        whoamiBtn.addEventListener('click', openDrawer);
-    }
-
-    if (closeDrawerBtn) {
-        closeDrawerBtn.addEventListener('click', closeDrawer);
-    }
-
-    if (drawerOverlay) {
-        drawerOverlay.addEventListener('click', closeDrawer);
-    }
-
-    // Close drawer on escape key
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && whoamiDrawer && !whoamiDrawer.hidden) {
-            closeDrawer();
+    function typeWriter(text, i, cb) {
+        if (i < text.length) {
+            // handle HTML tags in the payload so they don't get printed char by char
+            if(text.charAt(i) === '<') {
+                let tag = "";
+                while(text.charAt(i) !== '>' && i < text.length) {
+                    tag += text.charAt(i);
+                    i++;
+                }
+                tag += '>';
+                typeOutput.innerHTML += tag;
+                i++;
+            } else {
+                typeOutput.innerHTML += text.charAt(i);
+                i++;
+            }
+            setTimeout(() => typeWriter(text, i, cb), 15);
+        } else {
+            if (cb) cb();
         }
-    });
+    }
+
+    if (termTrigger) {
+        termTrigger.addEventListener('click', () => {
+            const isOpen = termAccordion.classList.contains('open');
+
+            if (isOpen) {
+                termAccordion.classList.remove('open');
+                termTrigger.style.borderBottomLeftRadius = '8px';
+                termTrigger.style.borderBottomRightRadius = '8px';
+            } else {
+                termAccordion.hidden = false;
+                // Force reflow
+                void termAccordion.offsetWidth;
+                termAccordion.classList.add('open');
+                termTrigger.style.borderBottomLeftRadius = '0';
+                termTrigger.style.borderBottomRightRadius = '0';
+
+                if (!hasTyped && !isTyping) {
+                    isTyping = true;
+                    typeOutput.innerHTML = '';
+                    typeWriter(identityPayload, 0, () => {
+                        isTyping = false;
+                        hasTyped = true;
+                        termAction.hidden = false;
+                    });
+                }
+            }
+        });
+    }
 
 });
