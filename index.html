@@ -42,67 +42,68 @@
     </div>
   </div>
 
-  <!-- Prototype D: Fullscreen Modal Dashboard -->
-  <div id="dashboard-overlay" class="dashboard-overlay" hidden>
-    <div class="dashboard-modal">
-      <div class="dashboard-header">
-        <h2 class="dashboard-title">>> identity_node</h2>
-        <button id="close-dashboard" class="close-btn">&times;</button>
+  <!-- Hybrid Drawer Overlay -->
+  <div id="drawer-overlay" class="drawer-overlay" hidden></div>
+  <aside id="hybrid-drawer" class="drawer" hidden>
+    <div class="drawer-header">
+      <h2 class="drawer-title">>> whoami</h2>
+      <button id="close-drawer" class="close-btn">&times;</button>
+    </div>
+
+    <div class="drawer-body">
+      <!-- Header: Avatar & Bio -->
+      <div class="hybrid-profile">
+        <div class="hybrid-avatar">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+        </div>
+        <div class="hybrid-info">
+          <h3>Amir Parsa</h3>
+          <p>AI Researcher & Systems Engineer</p>
+        </div>
       </div>
 
-      <div class="dashboard-grid">
-        <!-- Sub-panel 1: Identity & CV -->
-        <div class="dashboard-panel panel-identity">
-          <div class="dash-avatar">
-            <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-          </div>
-          <h3 class="dash-name">Amir Parsa</h3>
-          <p class="dash-role">AI Researcher & Security Engineer</p>
-          <a href="assets/resume.pdf" target="_blank" class="dash-btn">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-            DOWNLOAD CV
-          </a>
-        </div>
+      <!-- Skill Intensity Tags -->
+      <div class="skills-cloud-section">
+        <h4 class="skills-heading">> capability_matrix</h4>
 
-        <!-- Sub-panel 2: Skills Matrix -->
-        <div class="dashboard-panel panel-skills">
-          <h4 class="panel-heading">> capability_matrix</h4>
-          <div class="dash-metrics">
-            <div class="dash-metric">
-              <div class="dash-metric-label"><span>LLM Fine-tuning</span><span>90%</span></div>
-              <div class="dash-metric-bar"><div class="dash-metric-fill" style="width: 90%;"></div></div>
-            </div>
-            <div class="dash-metric">
-              <div class="dash-metric-label"><span>Docker/Podman</span><span>85%</span></div>
-              <div class="dash-metric-bar"><div class="dash-metric-fill" style="width: 85%;"></div></div>
-            </div>
-            <div class="dash-metric">
-              <div class="dash-metric-label"><span>Python</span><span>92%</span></div>
-              <div class="dash-metric-bar"><div class="dash-metric-fill" style="width: 92%;"></div></div>
-            </div>
-            <div class="dash-metric">
-              <div class="dash-metric-label"><span>Linux Kernel</span><span>95%</span></div>
-              <div class="dash-metric-bar"><div class="dash-metric-fill" style="width: 95%;"></div></div>
-            </div>
+        <div class="tag-group">
+          <div class="tag-label">// Core_Production</div>
+          <div class="tag-cloud">
+            <span class="skill-tag tag-core">Autonomous Agents</span>
+            <span class="skill-tag tag-core">Immutable OS</span>
+            <span class="skill-tag tag-core">Network Engineering</span>
           </div>
         </div>
 
-        <!-- Sub-panel 3: Project Architecture Log -->
-        <div class="dashboard-panel panel-terminal">
-          <div class="dash-term-header">
-            <span>root@amirinit:~# cat recent_projects.log</span>
+        <div class="tag-group">
+          <div class="tag-label">// Active_Research</div>
+          <div class="tag-cloud">
+            <span class="skill-tag tag-research">GRPO</span>
+            <span class="skill-tag tag-research">Quantitative Finance</span>
+            <span class="skill-tag tag-research">LLM Fine-tuning</span>
           </div>
-          <div class="dash-term-body">
-            <p><span class="term-time">[10:42:01]</span> <span class="log-ok">[ OK ]</span> Deployed clustered inference API</p>
-            <p><span class="term-time">[10:45:12]</span> <span class="log-ok">[ OK ]</span> Fine-tuned Llama-3 on domain data</p>
-            <p><span class="term-time">[11:02:44]</span> <span class="log-warn">[WARN]</span> Node 03 memory usage threshold</p>
-            <p><span class="term-time">[11:05:20]</span> <span class="log-ok">[ OK ]</span> Patched custom kernel module</p>
-            <p><span class="term-time">[11:15:00]</span> <span class="log-ok">[ OK ]</span> System architecture verified.</p>
+        </div>
+
+        <div class="tag-group">
+          <div class="tag-label">// User_Space_Tooling</div>
+          <div class="tag-cloud">
+            <span class="skill-tag tag-tooling">Rust</span>
+            <span class="skill-tag tag-tooling">Python</span>
+            <span class="skill-tag tag-tooling">Podman</span>
+            <span class="skill-tag tag-tooling">Docker</span>
+            <span class="skill-tag tag-tooling">Git</span>
           </div>
         </div>
       </div>
     </div>
-  </div>
+
+    <!-- The Ultimate CTA (Sticky Footer) -->
+    <div class="drawer-sticky-footer">
+      <a href="assets/resume.pdf" target="_blank" class="ultimate-cta-btn">
+        <span class="cta-prefix">&gt; EXECUTE:</span> Download_CV
+      </a>
+    </div>
+  </aside>
 
   <!-- Toast Container for Notifications -->
   <div id="toast-container" class="toast-container"></div>
@@ -152,12 +153,12 @@
 
     <section class="grid-section">
       <div class="grid">
-        <!-- Prototype D: Dashboard Trigger -->
-        <button id="identity-node-btn" class="tile btn-tile">
+        <!-- Hybrid Drawer Trigger -->
+        <button id="whoami-btn" class="tile btn-tile">
           <span class="tile__icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="filter: drop-shadow(0 0 5px rgba(255,255,255,0.2));"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="filter: drop-shadow(0 0 5px rgba(255,255,255,0.2));"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
           </span>
-          <span class="tile__label">Identity Node</span>
+          <span class="tile__label">Whoami</span>
         </button>
 
         <a class="tile" href="mailto:amirparsarabii@gmail.com">
