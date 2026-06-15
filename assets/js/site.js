@@ -19,11 +19,10 @@ document.addEventListener('DOMContentLoaded', () => {
     
     const discordBtn = document.getElementById('discord-btn');
 
-    // Prototype C Elements
-    const tabHome = document.getElementById('tab-home');
-    const tabProfile = document.getElementById('tab-profile');
-    const paneHome = document.getElementById('pane-home');
-    const paneProfile = document.getElementById('pane-profile');
+    // Prototype D Elements
+    const identityNodeBtn = document.getElementById('identity-node-btn');
+    const dashboardOverlay = document.getElementById('dashboard-overlay');
+    const closeDashboardBtn = document.getElementById('close-dashboard');
 
     // Audio Init
     const STORAGE_KEY_VOL = 'amirinit_vol';
@@ -189,35 +188,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- Prototype C: Tab Switching Logic ---
-    function switchTab(activeTab, inactiveTab, activePane, inactivePane) {
-        if (activeTab.classList.contains('active')) return;
-
-        // Update tab buttons
-        activeTab.classList.add('active');
-        inactiveTab.classList.remove('active');
-
-        // Fade out inactive pane
-        inactivePane.classList.remove('active');
-
-        // Wait for fade out to finish before fading in new content
-        setTimeout(() => {
-            inactivePane.classList.add('hidden');
-            activePane.classList.remove('hidden');
-
-            // Force reflow
-            void activePane.offsetWidth;
-
-            // Fade in active pane
-            activePane.classList.add('active');
-        }, 400); // Matches CSS transition time
-    }
-
-    if (tabHome && tabProfile) {
-        tabHome.addEventListener('click', () => switchTab(tabHome, tabProfile, paneHome, paneProfile));
-        tabProfile.addEventListener('click', () => switchTab(tabProfile, tabHome, paneProfile, paneHome));
-    }
-
     // --- 3D Tilt Tracking Effect ---
     const tiles = document.querySelectorAll('.tile');
 
@@ -240,6 +210,53 @@ document.addEventListener('DOMContentLoaded', () => {
         tile.addEventListener('mouseleave', () => {
             tile.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
         });
+    });
+
+    // --- Prototype D: Dashboard Logic ---
+    function openDashboard() {
+        dashboardOverlay.hidden = false;
+
+        // Force reflow
+        void dashboardOverlay.offsetWidth;
+
+        dashboardOverlay.classList.add('active');
+
+        // Prevent background scrolling
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeDashboard() {
+        dashboardOverlay.classList.remove('active');
+
+        // Wait for transition
+        setTimeout(() => {
+            dashboardOverlay.hidden = true;
+            document.body.style.overflow = '';
+        }, 400); // Matches CSS transition duration
+    }
+
+    if (identityNodeBtn) {
+        identityNodeBtn.addEventListener('click', openDashboard);
+    }
+
+    if (closeDashboardBtn) {
+        closeDashboardBtn.addEventListener('click', closeDashboard);
+    }
+
+    if (dashboardOverlay) {
+        dashboardOverlay.addEventListener('click', (e) => {
+            // Close only if clicking the overlay background directly, not the inner modal
+            if (e.target === dashboardOverlay) {
+                closeDashboard();
+            }
+        });
+    }
+
+    // Close dashboard on escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && dashboardOverlay && !dashboardOverlay.hidden) {
+            closeDashboard();
+        }
     });
 
 });
