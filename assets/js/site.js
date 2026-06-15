@@ -19,10 +19,11 @@ document.addEventListener('DOMContentLoaded', () => {
     
     const discordBtn = document.getElementById('discord-btn');
 
-    // Prototype D Elements
-    const identityNodeBtn = document.getElementById('identity-node-btn');
-    const dashboardOverlay = document.getElementById('dashboard-overlay');
-    const closeDashboardBtn = document.getElementById('close-dashboard');
+    // Hybrid Drawer Elements
+    const whoamiBtn = document.getElementById('whoami-btn');
+    const drawerOverlay = document.getElementById('drawer-overlay');
+    const hybridDrawer = document.getElementById('hybrid-drawer');
+    const closeDrawerBtn = document.getElementById('close-drawer');
 
     // Audio Init
     const STORAGE_KEY_VOL = 'amirinit_vol';
@@ -201,8 +202,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const centerY = rect.height / 2;
 
             // Calculate tilt angle. Adjust the divisor for sensitivity (higher = less sensitive).
-            const rotateX = ((y - centerY) / centerY) * -8;
-            const rotateY = ((x - centerX) / centerX) * 8;
+            const rotateX = ((y - centerY) / centerY) * 8; // Inverted to tilt *toward* the cursor
+            const rotateY = ((x - centerX) / centerX) * -8; // Inverted to tilt *toward* the cursor
 
             tile.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
         });
@@ -212,50 +213,49 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // --- Prototype D: Dashboard Logic ---
-    function openDashboard() {
-        dashboardOverlay.hidden = false;
+    // --- Hybrid Drawer Logic ---
+    function openDrawer() {
+        drawerOverlay.hidden = false;
+        hybridDrawer.hidden = false;
 
         // Force reflow
-        void dashboardOverlay.offsetWidth;
+        void drawerOverlay.offsetWidth;
 
-        dashboardOverlay.classList.add('active');
+        drawerOverlay.classList.add('active');
+        hybridDrawer.classList.add('active');
 
         // Prevent background scrolling
         document.body.style.overflow = 'hidden';
     }
 
-    function closeDashboard() {
-        dashboardOverlay.classList.remove('active');
+    function closeDrawer() {
+        drawerOverlay.classList.remove('active');
+        hybridDrawer.classList.remove('active');
 
         // Wait for transition
         setTimeout(() => {
-            dashboardOverlay.hidden = true;
+            drawerOverlay.hidden = true;
+            hybridDrawer.hidden = true;
             document.body.style.overflow = '';
         }, 400); // Matches CSS transition duration
     }
 
-    if (identityNodeBtn) {
-        identityNodeBtn.addEventListener('click', openDashboard);
+    if (whoamiBtn) {
+        whoamiBtn.addEventListener('click', openDrawer);
     }
 
-    if (closeDashboardBtn) {
-        closeDashboardBtn.addEventListener('click', closeDashboard);
+    if (closeDrawerBtn) {
+        closeDrawerBtn.addEventListener('click', closeDrawer);
     }
 
-    if (dashboardOverlay) {
-        dashboardOverlay.addEventListener('click', (e) => {
-            // Close only if clicking the overlay background directly, not the inner modal
-            if (e.target === dashboardOverlay) {
-                closeDashboard();
-            }
-        });
+    if (drawerOverlay) {
+        drawerOverlay.addEventListener('click', closeDrawer);
     }
 
-    // Close dashboard on escape key
+    // Close drawer on escape key
     document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && dashboardOverlay && !dashboardOverlay.hidden) {
-            closeDashboard();
+        if (e.key === 'Escape' && hybridDrawer && !hybridDrawer.hidden) {
+            closeDrawer();
         }
     });
 
