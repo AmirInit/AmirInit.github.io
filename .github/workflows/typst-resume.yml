@@ -1,0 +1,38 @@
+name: Typst Resume Pipeline
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'resume/**'
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'resume/**'
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Install Typst
+        uses: typst-community/setup-typst@v3
+
+      - name: Compile Typst Resume
+        run: typst compile resume/resume.typ assets/resume.pdf
+
+      - name: Auto-commit and Push PDF
+        if: github.event_name == 'push'
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore: compile typst resume to pdf [skip ci]"
+          file_pattern: 'assets/resume.pdf'
