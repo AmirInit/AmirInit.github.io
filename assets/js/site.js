@@ -19,11 +19,11 @@ document.addEventListener('DOMContentLoaded', () => {
     
     const discordBtn = document.getElementById('discord-btn');
 
-    // Prototype B Elements
-    const termTrigger = document.getElementById('term-trigger');
-    const termAccordion = document.getElementById('term-accordion');
-    const typeOutput = document.getElementById('typewriter-output');
-    const termAction = document.getElementById('term-download-action');
+    // Prototype C Elements
+    const tabHome = document.getElementById('tab-home');
+    const tabProfile = document.getElementById('tab-profile');
+    const paneHome = document.getElementById('pane-home');
+    const paneProfile = document.getElementById('pane-profile');
 
     // Audio Init
     const STORAGE_KEY_VOL = 'amirinit_vol';
@@ -189,6 +189,35 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // --- Prototype C: Tab Switching Logic ---
+    function switchTab(activeTab, inactiveTab, activePane, inactivePane) {
+        if (activeTab.classList.contains('active')) return;
+
+        // Update tab buttons
+        activeTab.classList.add('active');
+        inactiveTab.classList.remove('active');
+
+        // Fade out inactive pane
+        inactivePane.classList.remove('active');
+
+        // Wait for fade out to finish before fading in new content
+        setTimeout(() => {
+            inactivePane.classList.add('hidden');
+            activePane.classList.remove('hidden');
+
+            // Force reflow
+            void activePane.offsetWidth;
+
+            // Fade in active pane
+            activePane.classList.add('active');
+        }, 400); // Matches CSS transition time
+    }
+
+    if (tabHome && tabProfile) {
+        tabHome.addEventListener('click', () => switchTab(tabHome, tabProfile, paneHome, paneProfile));
+        tabProfile.addEventListener('click', () => switchTab(tabProfile, tabHome, paneProfile, paneHome));
+    }
+
     // --- 3D Tilt Tracking Effect ---
     const tiles = document.querySelectorAll('.tile');
 
@@ -212,73 +241,5 @@ document.addEventListener('DOMContentLoaded', () => {
             tile.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
         });
     });
-
-    // --- Prototype B: Terminal Accordion & Typewriter Logic ---
-    const identityPayload = `{
-  <span class="json-key">"name"</span>: <span class="json-string">"Amir Parsa"</span>,
-  <span class="json-key">"role"</span>: <span class="json-string">"AI Researcher & Systems Engineer"</span>,
-  <span class="json-key">"skills"</span>: <span class="json-bracket">[</span>
-    <span class="json-string">"LLM Fine-tuning"</span>,
-    <span class="json-string">"Docker"</span>,
-    <span class="json-string">"Podman"</span>,
-    <span class="json-string">"Python"</span>,
-    <span class="json-string">"Linux Kernel"</span>
-  <span class="json-bracket">]</span>,
-  <span class="json-key">"status"</span>: <span class="json-string">"Operational"</span>
-}`;
-
-    let isTyping = false;
-    let hasTyped = false;
-
-    function typeWriter(text, i, cb) {
-        if (i < text.length) {
-            // handle HTML tags in the payload so they don't get printed char by char
-            if(text.charAt(i) === '<') {
-                let tag = "";
-                while(text.charAt(i) !== '>' && i < text.length) {
-                    tag += text.charAt(i);
-                    i++;
-                }
-                tag += '>';
-                typeOutput.innerHTML += tag;
-                i++;
-            } else {
-                typeOutput.innerHTML += text.charAt(i);
-                i++;
-            }
-            setTimeout(() => typeWriter(text, i, cb), 15);
-        } else {
-            if (cb) cb();
-        }
-    }
-
-    if (termTrigger) {
-        termTrigger.addEventListener('click', () => {
-            const isOpen = termAccordion.classList.contains('open');
-
-            if (isOpen) {
-                termAccordion.classList.remove('open');
-                termTrigger.style.borderBottomLeftRadius = '8px';
-                termTrigger.style.borderBottomRightRadius = '8px';
-            } else {
-                termAccordion.hidden = false;
-                // Force reflow
-                void termAccordion.offsetWidth;
-                termAccordion.classList.add('open');
-                termTrigger.style.borderBottomLeftRadius = '0';
-                termTrigger.style.borderBottomRightRadius = '0';
-
-                if (!hasTyped && !isTyping) {
-                    isTyping = true;
-                    typeOutput.innerHTML = '';
-                    typeWriter(identityPayload, 0, () => {
-                        isTyping = false;
-                        hasTyped = true;
-                        termAction.hidden = false;
-                    });
-                }
-            }
-        });
-    }
 
 });
