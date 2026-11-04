@@ -4,97 +4,133 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="dark">
-  <meta name="theme-color" content="#0b0c0f">
-  <meta name="description" content="Amir Parsa Rabiei — AI research, cybersecurity, and systems engineering. Explore selected work, experience, and a downloadable CV.">
-  <meta property="og:title" content="Amir Parsa Rabiei — AI, Security & Systems">
-  <meta property="og:description" content="Research, experience, and selected work at the intersection of artificial intelligence and cybersecurity.">
+  <meta name="theme-color" content="#08090c">
+  <meta name="description" content="Amir Parsa Rabiei — AI research, cybersecurity, and systems. Explore experience, publications, awards, and a downloadable CV.">
+  <meta property="og:title" content="Amir Parsa Rabiei — AI, Security &amp; Systems">
+  <meta property="og:description" content="A compact profile of research, experience, and work at the intersection of artificial intelligence and cybersecurity.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://amirinit.github.io/">
   <meta property="og:image" content="https://amirinit.github.io/assets/img/og.png">
   <meta property="og:image:alt" content="Amir Parsa Rabiei — AI, Security and Systems">
   <meta name="twitter:card" content="summary_large_image">
   <title>Amir Parsa Rabiei — AI, Security &amp; Systems</title>
-  <link rel="icon" href="assets/img/favicon.svg">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="assets/css/site.css">
+  <script src="assets/js/starfield.js" defer></script>
   <script src="assets/js/site.js" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
-  <div class="site-shell">
-    <header class="site-header wrap">
+  <canvas id="bg-canvas" aria-hidden="true"></canvas>
+  <div class="shell" id="top">
+    <header class="topbar">
       <a class="brand" href="#top" aria-label="AmirInit, back to top">
         <span class="brand-mark" aria-hidden="true">A<span>.</span></span>
-        <span class="brand-text">AMIRINIT <small>RESEARCH / SYSTEMS</small></span>
+        <span class="brand-word">AMIRINIT <small>RESEARCH / SYSTEMS</small></span>
       </a>
-      <nav aria-label="Main navigation" class="nav-links">
-        <a href="#experience">Experience</a>
-        <a href="#research">Research</a>
-        <a href="#recognition">Recognition</a>
-        <a href="#contact">Contact</a>
-      </nav>
-      <a class="header-cv" href="assets/resume.pdf" download="Amir-Parsa-Rabiei-CV.pdf">Download CV <span aria-hidden="true">↗</span></a>
+      <div class="top-actions">
+        <button class="shortcut" id="command-trigger" type="button" aria-haspopup="dialog" aria-controls="command-menu" hidden><span>Navigate</span><kbd>⌘ K</kbd></button>
+        <div class="sound" aria-label="Background music">
+          <audio id="bgm" controls preload="none" loop aria-label="Background music"><source src="assets/audio/bg.mp3" type="audio/mpeg">Your browser does not support audio playback.</audio>
+          <div class="sound-controls" id="sound-controls" hidden>
+            <button id="sound-toggle" class="sound-toggle" type="button" aria-pressed="false" aria-label="Background music"><span class="sound-icon" aria-hidden="true">▶</span><span id="sound-label">SOUND OFF</span></button>
+            <label class="sr-only" for="sound-volume">Music volume</label>
+            <input id="sound-volume" type="range" min="0" max="100" value="30" aria-label="Music volume">
+          </div>
+          <span id="sound-status" class="sound-status" role="status" aria-live="polite"></span>
+        </div>
+      </div>
     </header>
 
     <main id="main">
-      <section id="top" class="hero wrap" aria-labelledby="hero-title">
-        <div class="hero-copy">
-          <p class="eyebrow"><span class="status-dot" aria-hidden="true"></span> AI RESEARCH / CYBERSECURITY / SYSTEMS</p>
-          <h1 id="hero-title">Curiosity is<br>the <em>starting point.</em></h1>
-          <p class="hero-intro">I'm <strong>Amir Parsa Rabiei</strong> — a researcher and systems engineer exploring the intersection of artificial intelligence, cybersecurity, and the systems we rely on.</p>
-          <div class="actions">
-            <a class="button button-primary" href="#experience">Explore my work <span aria-hidden="true">↘</span></a>
-            <a class="button button-outline" href="assets/resume.pdf" download="Amir-Parsa-Rabiei-CV.pdf">Download CV <span aria-hidden="true">↓</span></a>
+      <section class="workspace" aria-label="Amir Parsa Rabiei profile">
+        <div class="workspace-bar"><span><i class="live-dot" aria-hidden="true"></i> AMIRINIT <span class="bar-slash">/</span> PROFILE</span><span class="workspace-bar-right">PERSONAL INDEX <span class="bar-slash">● ● ●</span></span></div>
+        <div class="workspace-grid">
+          <div class="identity">
+            <p class="overline"><span>01 /</span> INTELLIGENCE · SECURITY · SYSTEMS</p>
+            <h1>Amir Parsa<br><em>Rabiei<span>.</span></em></h1>
+            <p class="identity-role">AI RESEARCHER <span>/</span> SECURITY ENGINEER</p>
+            <p class="intro">AI research and security engineering, grounded in an enduring curiosity for how systems work.</p>
+            <div class="identity-actions">
+              <a class="button button-primary" href="#resume" data-reveal="resume">Explore my CV <span aria-hidden="true">↘</span></a>
+              <a class="button button-secondary" href="assets/resume.pdf" download="Amir-Parsa-Rabiei-CV.pdf">Download PDF <span aria-hidden="true">↓</span></a>
+            </div>
+            <div class="at-glance" aria-label="At a glance">
+              <div><span>RESEARCH</span><strong>AI + systems</strong></div>
+              <div><span>RECOGNITION</span><strong>1st · IRAN CTF</strong></div>
+              <div><span>EXPERIENCE</span><strong>Deep Nex / Arka</strong></div>
+            </div>
           </div>
-          <div class="hero-bottom"><span>INDEPENDENT THINKING. PRACTICAL SYSTEMS.</span><span>SCROLL TO EXPLORE ↓</span></div>
-        </div>
-        <aside class="hero-panel" aria-label="Profile overview">
-          <div class="panel-top"><span>PROFILE.TXT</span><span class="panel-dots" aria-hidden="true">● ● ●</span></div>
-          <div class="panel-body">
-            <div class="orbit" aria-hidden="true"><span class="orbit-core">A<span>.</span></span><span class="orbit-label orbit-label-one">AI</span><span class="orbit-label orbit-label-two">SEC</span><span class="orbit-label orbit-label-three">SYS</span></div>
-            <p class="terminal-line"><span>~</span> whoami</p>
-            <p class="panel-name">Amir Parsa Rabiei</p>
-            <p class="panel-description">Exploring intelligent systems, information security, and the space between.</p>
+
+          <div class="directory" aria-labelledby="directory-title">
+            <div class="directory-heading"><div><p class="overline"><span>02 /</span> SELECT A SECTION</p><h2 id="directory-title">The profile<span class="lime">_</span></h2></div><span class="directory-command" aria-hidden="true">~/amirinit</span></div>
+            <div class="directory-list">
+              <details class="entry" id="resume">
+                <summary><span class="entry-index">01</span><span class="entry-copy"><strong>Résumé</strong><small>Experience, education &amp; focus</small></span><span class="entry-hint">OPEN <b aria-hidden="true">↗</b></span></summary>
+                <div class="entry-content">
+                  <div class="record"><span>1402–1403 SH <small>≈ 2023–2025</small></span><div><h3>AI Consultant</h3><p>Deep Nex</p></div></div>
+                  <div class="record"><span>1401 SH <small>≈ 2022–2023</small></span><div><h3>SOC Engineer</h3><p>Arka</p></div></div>
+                  <div class="record"><span>EDUCATION</span><div><h3>Software engineering studies</h3><p>Islamic Azad University, Hamadan</p></div></div>
+                  <p class="detail-note">SH indicates Solar Hijri years. Gregorian years describe the approximate calendar span, not exact employment dates.</p>
+                  <p class="detail-note">Focus: machine learning, security operations, Linux, Python, Rust, and containers.</p>
+                  <a class="inline-link" href="assets/resume.pdf" target="_blank" rel="noopener noreferrer">View full CV as PDF <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a>
+                </div>
+              </details>
+              <details class="entry" id="research">
+                <summary><span class="entry-index">02</span><span class="entry-copy"><strong>Research</strong><small>Language, networks &amp; computer vision</small></span><span class="entry-hint">OPEN <b aria-hidden="true">↗</b></span></summary>
+                <div class="entry-content research-records">
+                  <article><p class="record-label">NATURAL LANGUAGE PROCESSING · 2024</p><h3>BERTCaps: BERT Capsule for Persian Multi-Domain Sentiment Analysis</h3><p>Co-authored research combining BERT and capsule models for Persian sentiment and domain classification.</p><div class="record-links"><a href="https://arxiv.org/abs/2412.05591" target="_blank" rel="noopener noreferrer">arXiv ↗</a><a href="https://www.researchgate.net/publication/386140009_BERTCaps_BERT_Capsule_for_Persian_Multi-Domain_Sentiment_Analysis" target="_blank" rel="noopener noreferrer">ResearchGate ↗</a></div></article>
+                  <article><p class="record-label">NETWORKS &amp; AI</p><h3>A Survey of Generative Adversarial Network on Next Generation Network</h3><div class="record-links"><a href="https://www.researchgate.net/publication/391561422_A_survey_of_generative_adversarial_network_on_next_generation_network" target="_blank" rel="noopener noreferrer">ResearchGate ↗</a></div></article>
+                  <article><p class="record-label">COMPUTER VISION · CONFERENCE</p><h3>Deep Face Identification Using Incomplete Facial Data</h3><p>International Congress of Science and Engineering, Japan. Title translated from Persian.</p><div class="record-links"><a href="https://isnac.ir/show-paper/50740" target="_blank" rel="noopener noreferrer">Paper record ↗</a></div></article>
+                  <a class="inline-link" href="https://www.researchgate.net/profile/Amirparsa-Rabiei" target="_blank" rel="noopener noreferrer">ResearchGate profile ↗</a>
+                </div>
+              </details>
+              <details class="entry" id="recognition">
+                <summary><span class="entry-index">03</span><span class="entry-copy"><strong>Recognition</strong><small>Awards &amp; conversations</small></span><span class="entry-hint">OPEN <b aria-hidden="true">↗</b></span></summary>
+                <div class="entry-content research-records">
+                  <article><p class="record-label">NATIONAL · 2023</p><h3>First place, IRAN CTF</h3><p>National cybersecurity capture-the-flag competition.</p><div class="record-links"><a href="https://www.iscanews.ir/news/1206733/" target="_blank" rel="noopener noreferrer">ISCA News ↗</a></div></article>
+                  <article><p class="record-label">PROVINCIAL · 2017</p><h3>Second place, Khwarizmi Youth Festival</h3><p>Provincial recognition for a student project.</p><div class="record-links"><a href="https://www.pana.ir/%D8%A8%D8%AE%D8%B4-%D8%A7%D8%AE%D8%A8%D8%A7%D8%B1-2/623615-%DA%A9%D8%B3%D8%A8-%D8%B1%D8%AA%D8%A8%D9%87-%D9%87%D8%A7%DB%8C-%D8%A8%D8%B1%D8%AA%D8%B1-%D8%A7%D8%B3%D8%AA%D8%A7%D9%86%DB%8C-%D8%AA%D9%88%D8%B3%D8%B7" target="_blank" rel="noopener noreferrer">PANA ↗</a></div></article>
+                  <article><p class="record-label">INTERVIEW</p><h3>Cybersecurity &amp; protecting information</h3><div class="record-links"><a href="https://ana.ir/fa/news/889549/" target="_blank" rel="noopener noreferrer">ANA News Agency ↗</a></div></article>
+                </div>
+              </details>
+              <a class="entry entry-link" href="blog/"><span class="entry-index">04</span><span class="entry-copy"><strong>Journal</strong><small>Notes on research, security &amp; systems</small></span><span class="entry-hint">VISIT <b aria-hidden="true">↗</b></span></a>
+            </div>
+            <p class="directory-foot"><span class="lime">↳</span> Choose a section to explore. <span class="external-hint">Source links open in a new tab.</span></p>
           </div>
-          <div class="panel-bottom"><span><i class="status-dot" aria-hidden="true"></i> AMIRINIT</span><span>EST. IN CURIOSITY</span></div>
-        </aside>
-      </section>
-
-      <div class="marquee" aria-label="Areas of focus"><div class="wrap marquee-inner"><span>ARTIFICIAL INTELLIGENCE</span><b>✳</b><span>CYBERSECURITY</span><b>✳</b><span>LINUX &amp; SYSTEMS</span><b>✳</b><span>RESEARCH</span></div></div>
-
-      <section id="experience" class="section wrap" aria-labelledby="experience-title">
-        <div class="section-heading"><div><p class="eyebrow"><span>01 /</span> THE BACKGROUND</p><h2 id="experience-title">Experience<span class="accent-dot">.</span></h2></div><p>A concise view of the work and interests behind the research.</p></div>
-        <div class="experience-layout">
-          <div class="timeline">
-            <article class="timeline-item"><div class="timeline-date">1402–1403 SH<br><span>≈ 2023–2025</span></div><div class="timeline-content"><p class="item-kicker">ARTIFICIAL INTELLIGENCE</p><h3>AI Consultant</h3><p class="item-company">Deep Nex</p><p>Advisory work in artificial intelligence, bringing a research-informed perspective to applied AI.</p></div><span class="item-number">01</span></article>
-            <article class="timeline-item"><div class="timeline-date">1401 SH<br><span>≈ 2022–2023</span></div><div class="timeline-content"><p class="item-kicker">CYBERSECURITY</p><h3>SOC Engineer</h3><p class="item-company">Arka</p><p>Worked in security operations, with a focus on the systems and practices that support cybersecurity.</p></div><span class="item-number">02</span></article>
-          </div>
-          <aside class="profile-card"><p class="eyebrow"><span>↳</span> A LITTLE MORE</p><h3>Across disciplines,<br><em>one curiosity.</em></h3><p>My interests connect machine learning and security with the tools and infrastructure that make ideas useful.</p><div class="divider"></div><p class="card-label">FOCUS AREAS</p><ul class="tag-list"><li>Machine learning</li><li>Security operations</li><li>Linux &amp; systems</li><li>Python</li><li>Rust</li><li>Containers</li></ul><div class="divider"></div><p class="card-label">EDUCATION</p><p class="education">Software engineering studies<br><span>Islamic Azad University, Hamadan</span></p><a class="text-link" href="assets/resume.pdf" download="Amir-Parsa-Rabiei-CV.pdf">Get the full CV <span aria-hidden="true">↗</span></a></aside>
         </div>
-        <p class="date-note">SH denotes the Solar Hijri calendar. Gregorian years show the approximate span covered by the stated calendar years, not exact employment dates.</p>
+        <div class="workspace-footer"><span><i class="live-dot" aria-hidden="true"></i> RESEARCH / SECURITY / SYSTEMS</span><a href="mailto:amirparsarabii@gmail.com">LET'S CONNECT <span aria-hidden="true">↗</span></a></div>
       </section>
-
-      <section id="research" class="section section-tinted" aria-labelledby="research-title"><div class="wrap">
-        <div class="section-heading"><div><p class="eyebrow"><span>02 /</span> SELECTED WORK</p><h2 id="research-title">Research<span class="accent-dot">.</span></h2></div><p>Ideas explored through language, networks, and computer vision.</p></div>
-        <div class="research-grid">
-          <article class="research-card research-feature"><div class="card-top"><span>01 / NATURAL LANGUAGE PROCESSING</span><span>2024</span></div><div><p class="card-category">RESEARCH PAPER · ARXIV PREPRINT</p><h3>BERTCaps: BERT Capsule for Persian Multi-Domain Sentiment Analysis</h3><p>Co-authored research combining BERT and capsule models; the paper reports 97.12% sentiment accuracy and 85.09% domain classification accuracy on Persian Digikala reviews.</p></div><div class="card-links"><a href="https://arxiv.org/abs/2412.05591" target="_blank" rel="noopener noreferrer">Read on arXiv <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a><a href="https://www.researchgate.net/publication/386140009_BERTCaps_BERT_Capsule_for_Persian_Multi-Domain_Sentiment_Analysis" target="_blank" rel="noopener noreferrer">ResearchGate <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a></div></article>
-          <article class="research-card"><div class="card-top"><span>02 / NETWORKS &amp; AI</span><span>RESEARCH</span></div><div><p class="card-category">RESEARCH PAPER</p><h3>A Survey of Generative Adversarial Network on Next Generation Network</h3><p>A survey of generative adversarial networks and their applications in next-generation networks.</p></div><div class="card-links"><a href="https://www.researchgate.net/publication/391561422_A_survey_of_generative_adversarial_network_on_next_generation_network" target="_blank" rel="noopener noreferrer">Read on ResearchGate <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a></div></article>
-          <article class="research-card"><div class="card-top"><span>03 / COMPUTER VISION</span><span>CONFERENCE</span></div><div><p class="card-category">INTERNATIONAL CONGRESS · JAPAN</p><h3>Deep Face Identification Using Incomplete Facial Data</h3><p>Research on facial recognition using partial image data. Title translated from the original Persian.</p></div><div class="card-links"><a href="https://isnac.ir/show-paper/50740" target="_blank" rel="noopener noreferrer">View paper record <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a></div></article>
-        </div>
-        <div class="research-footer"><p>For more publications and research activity.</p><a class="text-link" href="https://www.researchgate.net/profile/Amirparsa-Rabiei" target="_blank" rel="noopener noreferrer">Visit my ResearchGate profile <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a></div>
-      </div></section>
-
-      <section id="recognition" class="section wrap" aria-labelledby="recognition-title">
-        <div class="section-heading"><div><p class="eyebrow"><span>03 /</span> MILESTONES &amp; MEDIA</p><h2 id="recognition-title">Recognition<span class="accent-dot">.</span></h2></div><p>A few moments, ideas, and conversations along the way.</p></div>
-        <div class="recognition-list">
-          <article class="recognition-item"><span class="recognition-index">01</span><div><p class="item-kicker">AWARD · NATIONAL</p><h3>First place, IRAN CTF</h3><p>National cybersecurity capture-the-flag competition · 1402 SH / 2023</p></div><a class="round-link" href="https://www.iscanews.ir/news/1206733/" target="_blank" rel="noopener noreferrer" aria-label="Read the ISCA News report on the IRAN CTF award (opens in a new tab)">↗</a></article>
-          <article class="recognition-item"><span class="recognition-index">02</span><div><p class="item-kicker">AWARD · PROVINCIAL</p><h3>Second place, Khwarizmi Youth Festival</h3><p>Provincial recognition for a student project · 1396 SH / 2017</p></div><a class="round-link" href="https://www.pana.ir/%D8%A8%D8%AE%D8%B4-%D8%A7%D8%AE%D8%A8%D8%A7%D8%B1-2/623615-%DA%A9%D8%B3%D8%A8-%D8%B1%D8%AA%D8%A8%D9%87-%D9%87%D8%A7%DB%8C-%D8%A8%D8%B1%D8%AA%D8%B1-%D8%A7%D8%B3%D8%AA%D8%A7%D9%86%DB%8C-%D8%AA%D9%88%D8%B3%D8%B7" target="_blank" rel="noopener noreferrer" aria-label="Read the PANA report on the Khwarizmi Youth Festival (opens in a new tab)">↗</a></article>
-          <article class="recognition-item"><span class="recognition-index">03</span><div><p class="item-kicker">INTERVIEW · ANA NEWS AGENCY</p><h3>On cybersecurity and protecting information</h3><p>A conversation about digital security, privacy, and protecting data.</p></div><a class="round-link" href="https://ana.ir/fa/news/889549/" target="_blank" rel="noopener noreferrer" aria-label="Read the ANA interview about cybersecurity (opens in a new tab)">↗</a></article>
-        </div>
-      </section>
-
-      <section id="contact" class="contact-section"><div class="wrap contact-inner"><div><p class="eyebrow"><span>04 /</span> GET IN TOUCH</p><h2>Good ideas start<br>with a <em>conversation.</em></h2><p>For research, thoughtful collaboration, or simply to say hello.</p><a class="contact-mail" href="mailto:amirparsarabii@gmail.com">amirparsarabii@gmail.com <span aria-hidden="true">↗</span></a></div><div class="contact-side"><p class="card-label">FIND ME ELSEWHERE</p><div class="social-links"><a href="https://github.com/AmirInit" target="_blank" rel="noopener noreferrer">GitHub <span>↗</span></a><a href="https://www.researchgate.net/profile/Amirparsa-Rabiei" target="_blank" rel="noopener noreferrer">ResearchGate <span>↗</span></a><a href="https://t.me/bootparsa" target="_blank" rel="noopener noreferrer">Telegram <span>↗</span></a><a href="https://keyoxide.org/4DC5940B4423F1CF7AC8D633B195B11B9A7C37E4" target="_blank" rel="noopener noreferrer">PGP key <span>↗</span></a><span class="discord">Discord <strong>amirinit</strong></span></div><p class="external-note">External links open in a new tab.</p></div></div></section>
     </main>
-    <footer class="footer wrap"><div><a class="footer-brand" href="#top">AMIRINIT<span>.</span></a><p>Research, systems, and a little curiosity.</p></div><div class="footer-extras"><details class="footer-detail"><summary>Support with Monero <span>+</span></summary><p>Monero address</p><code>48aepDYeCBYPrqVbxCap1YiNKHoQP8N5phhEEEPECyUAVs5VULNqTjzVVXKRQmW8UmjdAFgFQ5qZkfcpELZpbnKwCxKvxVi</code><button type="button" class="copy-address" hidden>Copy address</button><p class="copy-status" role="status" aria-live="polite"></p></details><details class="footer-detail"><summary>Background audio <span>+</span></summary><audio controls preload="none" aria-label="Background audio"><source src="assets/audio/bg.mp3" type="audio/mpeg">Your browser does not support audio playback.</audio></details></div><a class="back-top" href="#top">BACK TO TOP ↑</a></footer>
+
+    <footer class="footer">
+      <div class="footer-label"><span>FIND ME</span><span class="footer-line" aria-hidden="true"></span></div>
+      <nav class="socials" aria-label="Contact and social links">
+        <a href="mailto:amirparsarabii@gmail.com">Email <span>↗</span></a>
+        <a href="https://github.com/AmirInit" target="_blank" rel="noopener noreferrer">GitHub <span>↗</span></a>
+        <a href="https://www.researchgate.net/profile/Amirparsa-Rabiei" target="_blank" rel="noopener noreferrer">ResearchGate <span>↗</span></a>
+        <a href="https://t.me/bootparsa" target="_blank" rel="noopener noreferrer">Telegram <span>↗</span></a>
+        <a href="https://discord.com/users/1062013918853210142" target="_blank" rel="noopener noreferrer">Discord <span>↗</span></a>
+        <a href="https://keyoxide.org/4DC5940B4423F1CF7AC8D633B195B11B9A7C37E4" target="_blank" rel="noopener noreferrer">PGP <span>↗</span></a>
+      </nav>
+      <details class="support"><summary>Support with Monero <span aria-hidden="true">+</span></summary><div class="support-body"><p>Monero address</p><code id="xmr-address">48aepDYeCBYPrqVbxCap1YiNKHoQP8N5phhEEEPECyUAVs5VULNqTjzVVXKRQmW8UmjdAFgFQ5qZkfcpELZpbnKwCxKvxVi</code><button id="copy-address" type="button" hidden>Copy address</button><p id="copy-status" role="status" aria-live="polite"></p></div></details>
+      <p class="footer-note">DESIGNED FOR THE CURIOUS <span>✳</span> AMIRINIT</p>
+    </footer>
   </div>
+
+  <dialog id="command-menu" class="command-menu" aria-labelledby="command-title">
+    <div class="command-head"><div><p class="overline"><span>⌘ /</span> QUICK NAVIGATION</p><h2 id="command-title">Where to?</h2></div><form method="dialog"><button class="command-close" aria-label="Close navigation">×</button></form></div>
+    <label class="sr-only" for="command-search">Filter destinations</label>
+    <input id="command-search" type="search" placeholder="Search sections and links…" autocomplete="off">
+    <ul id="command-list" class="command-list">
+      <li><a href="#resume" data-reveal="resume"><span>Résumé &amp; experience</span><kbd>↗</kbd></a></li>
+      <li><a href="#research" data-reveal="research"><span>Research &amp; publications</span><kbd>↗</kbd></a></li>
+      <li><a href="#recognition" data-reveal="recognition"><span>Recognition &amp; awards</span><kbd>↗</kbd></a></li>
+      <li><a href="blog/"><span>Journal</span><kbd>↗</kbd></a></li>
+      <li><a href="assets/resume.pdf" download="Amir-Parsa-Rabiei-CV.pdf"><span>Download CV</span><kbd>↓</kbd></a></li>
+      <li><a href="mailto:amirparsarabii@gmail.com"><span>Send an email</span><kbd>↗</kbd></a></li>
+    </ul>
+    <p id="command-empty" class="command-empty" role="status" aria-live="polite" hidden>No matching destinations.</p>
+    <p class="command-tip">TYPE TO FILTER <span>·</span> ESC TO CLOSE</p>
+  </dialog>
 </body>
 </html>
