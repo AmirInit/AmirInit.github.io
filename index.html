@@ -1,227 +1,100 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="color-scheme" content="dark" />
-  <meta name="theme-color" content="#060607" />
-  
-  <title>root@amirinit:~#</title>
-  <meta name="description" content="System Root Access - AI • Linux • Security" />
-  <meta property="og:title" content="AmirInit | Researcher" />
-  <meta property="og:description" content="AI Research, Linux, and Security Engineering." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://amirinit.github.io" />
-  
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22 fill=%22%234af626%22 font-family=%22monospace%22 font-weight=%22bold%22>A</text></svg>">
-  
-  <link rel="stylesheet" href="assets/css/site.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&family=VT323&display=swap" rel="stylesheet">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#0b0c0f">
+  <meta name="description" content="Amir Parsa Rabiei — AI research, cybersecurity, and systems engineering. Explore selected work, experience, and a downloadable CV.">
+  <meta property="og:title" content="Amir Parsa Rabiei — AI, Security & Systems">
+  <meta property="og:description" content="Research, experience, and selected work at the intersection of artificial intelligence and cybersecurity.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://amirinit.github.io/">
+  <meta property="og:image" content="https://amirinit.github.io/assets/img/og.png">
+  <meta property="og:image:alt" content="Amir Parsa Rabiei — AI, Security and Systems">
+  <meta name="twitter:card" content="summary_large_image">
+  <title>Amir Parsa Rabiei — AI, Security &amp; Systems</title>
+  <link rel="icon" href="assets/img/favicon.svg">
+  <link rel="stylesheet" href="assets/css/site.css">
+  <script src="assets/js/site.js" defer></script>
 </head>
 <body>
-
-  <noscript>
-    <div style="color:#4af626; padding:20px; font-family:monospace;">JavaScript required for system initialization.</div>
-  </noscript>
-
-  <audio id="bgm" preload="none" loop>
-    <source src="assets/audio/bg.mp3" type="audio/mpeg" />
-  </audio>
-
-  <canvas id="bg-canvas"></canvas>
-
-  <div id="boot-screen" class="crt">
-    <div class="scanline"></div>
-    <div id="boot-log"></div>
-  </div>
-
-  <div id="gate" class="gate" hidden tabindex="0" role="button" aria-label="Enter System">
-    <div class="gate__content">
-      <div class="gate__prompt blink">root@amirinit:~# ./initialize_system --force</div>
-      <div class="gate__sub">[ SYSTEM HALTED. CLICK TO RESUME ]</div>
-    </div>
-  </div>
-
-  <!-- Hybrid Drawer Overlay -->
-  <div id="drawer-overlay" class="drawer-overlay" hidden></div>
-  <aside id="hybrid-drawer" class="drawer" hidden>
-    <div class="drawer-header">
-      <h2 class="drawer-title">>> whoami</h2>
-      <button id="close-drawer" class="close-btn">&times;</button>
-    </div>
-
-    <div class="drawer-body">
-      <!-- Header: Avatar & Bio -->
-      <div class="hybrid-profile">
-        <div class="hybrid-avatar">
-          <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-        </div>
-        <div class="hybrid-info">
-          <h3>Amir Parsa</h3>
-          <p>AI Researcher & Systems Engineer</p>
-        </div>
-      </div>
-
-      <!-- Skill Intensity Tags -->
-      <div class="skills-cloud-section">
-        <h4 class="skills-heading">> capability_matrix</h4>
-
-        <div class="tag-group">
-          <div class="tag-label">// Core_Production</div>
-          <div class="tag-cloud">
-            <span class="skill-tag tag-core">Autonomous Agents</span>
-            <span class="skill-tag tag-core">Immutable OS</span>
-            <span class="skill-tag tag-core">Network Engineering</span>
-          </div>
-        </div>
-
-        <div class="tag-group">
-          <div class="tag-label">// Active_Research</div>
-          <div class="tag-cloud">
-            <span class="skill-tag tag-research">GRPO</span>
-            <span class="skill-tag tag-research">Quantitative Finance</span>
-            <span class="skill-tag tag-research">LLM Fine-tuning</span>
-          </div>
-        </div>
-
-        <div class="tag-group">
-          <div class="tag-label">// User_Space_Tooling</div>
-          <div class="tag-cloud">
-            <span class="skill-tag tag-tooling">Rust</span>
-            <span class="skill-tag tag-tooling">Python</span>
-            <span class="skill-tag tag-tooling">Podman</span>
-            <span class="skill-tag tag-tooling">Docker</span>
-            <span class="skill-tag tag-tooling">Git</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- The Ultimate CTA (Sticky Footer) -->
-    <div class="drawer-sticky-footer">
-      <a href="assets/resume.pdf" target="_blank" class="ultimate-cta-btn">
-        <span class="cta-prefix">&gt; EXECUTE:</span> Download_CV
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="site-shell">
+    <header class="site-header wrap">
+      <a class="brand" href="#top" aria-label="AmirInit, back to top">
+        <span class="brand-mark" aria-hidden="true">A<span>.</span></span>
+        <span class="brand-text">AMIRINIT <small>RESEARCH / SYSTEMS</small></span>
       </a>
-    </div>
-  </aside>
-
-  <!-- Toast Container for Notifications -->
-  <div id="toast-container" class="toast-container"></div>
-
-  <!-- Monero Modal -->
-  <div id="monero-modal" class="modal" hidden>
-    <div class="modal-content">
-      <div class="modal-header">
-        <h3 class="modal-title">>> Monero Donation</h3>
-        <button id="close-modal" class="close-btn">&times;</button>
-      </div>
-      <div class="modal-body">
-        <p class="modal-desc">Support privacy & open research.</p>
-        
-        <!-- QR Code -->
-        <div class="qr-wrapper">
-           <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=monero:48aepDYeCBYPrqVbxCap1YiNKHoQP8N5phhEEEPECyUAVs5VULNqTjzVVXKRQmW8UmjdAFgFQ5qZkfcpELZpbnKwCxKvxVi&bgcolor=ffffff&color=000000&margin=10" alt="XMR QR" class="qr-code">
-        </div>
-
-        <div class="address-box">
-          <code id="xmr-addr">48aepDYeCBYPrqVbxCap1YiNKHoQP8N5phhEEEPECyUAVs5VULNqTjzVVXKRQmW8UmjdAFgFQ5qZkfcpELZpbnKwCxKvxVi</code>
-          <button id="copy-xmr-btn" class="copy-btn" title="Copy Address">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-          </button>
-        </div>
-        <div id="copy-msg" class="copy-msg">Address Copied!</div>
-      </div>
-    </div>
-  </div>
-
-  <main id="app" class="app" hidden>
-    
-    <header class="header">
-      <pre class="ascii-logo chroma-text">
-    ___            _      ____      _ __ 
-   /   |  ____ ___(_)____/  _/___  (_) /_
-  / /| | / __ `__ \ / ___/ // __ \/ / __/
- / ___ |/ / / / / / /  _/ // / / / / /_  
-/_/  |_/_/ /_/ /_/_/  /___/_/ /_/_/\__/  
-      </pre>
-
-      <div class="status-bar">
-        <span class="status-tag">[ SCIENTISM ]</span>
-        <span class="status-tag">[ E/ACC ]</span>
-      </div>
+      <nav aria-label="Main navigation" class="nav-links">
+        <a href="#experience">Experience</a>
+        <a href="#research">Research</a>
+        <a href="#recognition">Recognition</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <a class="header-cv" href="assets/resume.pdf" download="Amir-Parsa-Rabiei-CV.pdf">Download CV <span aria-hidden="true">↗</span></a>
     </header>
 
-    <section class="grid-section">
-      <div class="grid">
-        <!-- Hybrid Drawer Trigger -->
-        <button id="whoami-btn" class="tile btn-tile">
-          <span class="tile__icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="filter: drop-shadow(0 0 5px rgba(255,255,255,0.2));"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-          </span>
-          <span class="tile__label">Whoami</span>
-        </button>
+    <main id="main">
+      <section id="top" class="hero wrap" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <p class="eyebrow"><span class="status-dot" aria-hidden="true"></span> AI RESEARCH / CYBERSECURITY / SYSTEMS</p>
+          <h1 id="hero-title">Curiosity is<br>the <em>starting point.</em></h1>
+          <p class="hero-intro">I'm <strong>Amir Parsa Rabiei</strong> — a researcher and systems engineer exploring the intersection of artificial intelligence, cybersecurity, and the systems we rely on.</p>
+          <div class="actions">
+            <a class="button button-primary" href="#experience">Explore my work <span aria-hidden="true">↘</span></a>
+            <a class="button button-outline" href="assets/resume.pdf" download="Amir-Parsa-Rabiei-CV.pdf">Download CV <span aria-hidden="true">↓</span></a>
+          </div>
+          <div class="hero-bottom"><span>INDEPENDENT THINKING. PRACTICAL SYSTEMS.</span><span>SCROLL TO EXPLORE ↓</span></div>
+        </div>
+        <aside class="hero-panel" aria-label="Profile overview">
+          <div class="panel-top"><span>PROFILE.TXT</span><span class="panel-dots" aria-hidden="true">● ● ●</span></div>
+          <div class="panel-body">
+            <div class="orbit" aria-hidden="true"><span class="orbit-core">A<span>.</span></span><span class="orbit-label orbit-label-one">AI</span><span class="orbit-label orbit-label-two">SEC</span><span class="orbit-label orbit-label-three">SYS</span></div>
+            <p class="terminal-line"><span>~</span> whoami</p>
+            <p class="panel-name">Amir Parsa Rabiei</p>
+            <p class="panel-description">Exploring intelligent systems, information security, and the space between.</p>
+          </div>
+          <div class="panel-bottom"><span><i class="status-dot" aria-hidden="true"></i> AMIRINIT</span><span>EST. IN CURIOSITY</span></div>
+        </aside>
+      </section>
 
-        <a class="tile" href="mailto:amirparsarabii@gmail.com">
-          <span class="tile__icon"><img src="assets/img/icons/email.svg" alt="Email"></span>
-          <span class="tile__label">Email</span>
-        </a>
+      <div class="marquee" aria-label="Areas of focus"><div class="wrap marquee-inner"><span>ARTIFICIAL INTELLIGENCE</span><b>✳</b><span>CYBERSECURITY</span><b>✳</b><span>LINUX &amp; SYSTEMS</span><b>✳</b><span>RESEARCH</span></div></div>
 
-        <a class="tile" href="https://github.com/AmirInit" target="_blank" rel="noopener noreferrer">
-          <span class="tile__icon"><img src="assets/img/icons/github.svg" alt="GitHub"></span>
-          <span class="tile__label">GitHub</span>
-        </a>
+      <section id="experience" class="section wrap" aria-labelledby="experience-title">
+        <div class="section-heading"><div><p class="eyebrow"><span>01 /</span> THE BACKGROUND</p><h2 id="experience-title">Experience<span class="accent-dot">.</span></h2></div><p>A concise view of the work and interests behind the research.</p></div>
+        <div class="experience-layout">
+          <div class="timeline">
+            <article class="timeline-item"><div class="timeline-date">1402–1403 SH<br><span>≈ 2023–2025</span></div><div class="timeline-content"><p class="item-kicker">ARTIFICIAL INTELLIGENCE</p><h3>AI Consultant</h3><p class="item-company">Deep Nex</p><p>Advisory work in artificial intelligence, bringing a research-informed perspective to applied AI.</p></div><span class="item-number">01</span></article>
+            <article class="timeline-item"><div class="timeline-date">1401 SH<br><span>≈ 2022–2023</span></div><div class="timeline-content"><p class="item-kicker">CYBERSECURITY</p><h3>SOC Engineer</h3><p class="item-company">Arka</p><p>Worked in security operations, with a focus on the systems and practices that support cybersecurity.</p></div><span class="item-number">02</span></article>
+          </div>
+          <aside class="profile-card"><p class="eyebrow"><span>↳</span> A LITTLE MORE</p><h3>Across disciplines,<br><em>one curiosity.</em></h3><p>My interests connect machine learning and security with the tools and infrastructure that make ideas useful.</p><div class="divider"></div><p class="card-label">FOCUS AREAS</p><ul class="tag-list"><li>Machine learning</li><li>Security operations</li><li>Linux &amp; systems</li><li>Python</li><li>Rust</li><li>Containers</li></ul><div class="divider"></div><p class="card-label">EDUCATION</p><p class="education">Software engineering studies<br><span>Islamic Azad University, Hamadan</span></p><a class="text-link" href="assets/resume.pdf" download="Amir-Parsa-Rabiei-CV.pdf">Get the full CV <span aria-hidden="true">↗</span></a></aside>
+        </div>
+        <p class="date-note">SH denotes the Solar Hijri calendar. Gregorian years show the approximate span covered by the stated calendar years, not exact employment dates.</p>
+      </section>
 
-        <a class="tile" href="https://t.me/bootparsa" target="_blank" rel="noopener noreferrer">
-          <span class="tile__icon"><img src="assets/img/icons/telegram.svg" alt="Telegram"></span>
-          <span class="tile__label">Telegram</span>
-        </a>
+      <section id="research" class="section section-tinted" aria-labelledby="research-title"><div class="wrap">
+        <div class="section-heading"><div><p class="eyebrow"><span>02 /</span> SELECTED WORK</p><h2 id="research-title">Research<span class="accent-dot">.</span></h2></div><p>Ideas explored through language, networks, and computer vision.</p></div>
+        <div class="research-grid">
+          <article class="research-card research-feature"><div class="card-top"><span>01 / NATURAL LANGUAGE PROCESSING</span><span>2024</span></div><div><p class="card-category">RESEARCH PAPER · ARXIV PREPRINT</p><h3>BERTCaps: BERT Capsule for Persian Multi-Domain Sentiment Analysis</h3><p>Co-authored research combining BERT and capsule models; the paper reports 97.12% sentiment accuracy and 85.09% domain classification accuracy on Persian Digikala reviews.</p></div><div class="card-links"><a href="https://arxiv.org/abs/2412.05591" target="_blank" rel="noopener noreferrer">Read on arXiv <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a><a href="https://www.researchgate.net/publication/386140009_BERTCaps_BERT_Capsule_for_Persian_Multi-Domain_Sentiment_Analysis" target="_blank" rel="noopener noreferrer">ResearchGate <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a></div></article>
+          <article class="research-card"><div class="card-top"><span>02 / NETWORKS &amp; AI</span><span>RESEARCH</span></div><div><p class="card-category">RESEARCH PAPER</p><h3>A Survey of Generative Adversarial Network on Next Generation Network</h3><p>A survey of generative adversarial networks and their applications in next-generation networks.</p></div><div class="card-links"><a href="https://www.researchgate.net/publication/391561422_A_survey_of_generative_adversarial_network_on_next_generation_network" target="_blank" rel="noopener noreferrer">Read on ResearchGate <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a></div></article>
+          <article class="research-card"><div class="card-top"><span>03 / COMPUTER VISION</span><span>CONFERENCE</span></div><div><p class="card-category">INTERNATIONAL CONGRESS · JAPAN</p><h3>Deep Face Identification Using Incomplete Facial Data</h3><p>Research on facial recognition using partial image data. Title translated from the original Persian.</p></div><div class="card-links"><a href="https://isnac.ir/show-paper/50740" target="_blank" rel="noopener noreferrer">View paper record <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a></div></article>
+        </div>
+        <div class="research-footer"><p>For more publications and research activity.</p><a class="text-link" href="https://www.researchgate.net/profile/Amirparsa-Rabiei" target="_blank" rel="noopener noreferrer">Visit my ResearchGate profile <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a></div>
+      </div></section>
 
-        <!-- Discord Button (Copy Action) -->
-        <button id="discord-btn" class="tile btn-tile" data-userid="1062013918853210142">
-          <span class="tile__icon"><img src="assets/img/icons/discord.svg" alt="Discord"></span>
-          <span class="tile__label">Discord</span>
-        </button>
+      <section id="recognition" class="section wrap" aria-labelledby="recognition-title">
+        <div class="section-heading"><div><p class="eyebrow"><span>03 /</span> MILESTONES &amp; MEDIA</p><h2 id="recognition-title">Recognition<span class="accent-dot">.</span></h2></div><p>A few moments, ideas, and conversations along the way.</p></div>
+        <div class="recognition-list">
+          <article class="recognition-item"><span class="recognition-index">01</span><div><p class="item-kicker">AWARD · NATIONAL</p><h3>First place, IRAN CTF</h3><p>National cybersecurity capture-the-flag competition · 1402 SH / 2023</p></div><a class="round-link" href="https://www.iscanews.ir/news/1206733/" target="_blank" rel="noopener noreferrer" aria-label="Read the ISCA News report on the IRAN CTF award (opens in a new tab)">↗</a></article>
+          <article class="recognition-item"><span class="recognition-index">02</span><div><p class="item-kicker">AWARD · PROVINCIAL</p><h3>Second place, Khwarizmi Youth Festival</h3><p>Provincial recognition for a student project · 1396 SH / 2017</p></div><a class="round-link" href="https://www.pana.ir/%D8%A8%D8%AE%D8%B4-%D8%A7%D8%AE%D8%A8%D8%A7%D8%B1-2/623615-%DA%A9%D8%B3%D8%A8-%D8%B1%D8%AA%D8%A8%D9%87-%D9%87%D8%A7%DB%8C-%D8%A8%D8%B1%D8%AA%D8%B1-%D8%A7%D8%B3%D8%AA%D8%A7%D9%86%DB%8C-%D8%AA%D9%88%D8%B3%D8%B7" target="_blank" rel="noopener noreferrer" aria-label="Read the PANA report on the Khwarizmi Youth Festival (opens in a new tab)">↗</a></article>
+          <article class="recognition-item"><span class="recognition-index">03</span><div><p class="item-kicker">INTERVIEW · ANA NEWS AGENCY</p><h3>On cybersecurity and protecting information</h3><p>A conversation about digital security, privacy, and protecting data.</p></div><a class="round-link" href="https://ana.ir/fa/news/889549/" target="_blank" rel="noopener noreferrer" aria-label="Read the ANA interview about cybersecurity (opens in a new tab)">↗</a></article>
+        </div>
+      </section>
 
-        <a class="tile" href="https://keyoxide.org/4DC5940B4423F1CF7AC8D633B195B11B9A7C37E4" target="_blank" rel="noopener noreferrer">
-          <span class="tile__icon"><img src="assets/img/icons/key.svg" alt="PGP"></span>
-          <span class="tile__label">PGP Key</span>
-        </a>
-
-        <!-- Monero Button (Modal Action) -->
-        <button id="donate-btn" class="tile btn-tile">
-          <span class="tile__icon"><img src="assets/img/icons/coin.svg" alt="XMR"></span>
-          <span class="tile__label">Donate XMR</span>
-        </button>
-      </div>
-    </section>
-
-    <section class="stats-section">
-      <div class="panel__head">
-        <h2 class="h2">> /var/log/activity</h2>
-        <div class="panel__note">git_commit_stream</div>
-      </div>
-      <div class="stats-wrapper">
-        <img src="https://github-readme-activity-graph.vercel.app/graph?username=AmirInit&bg_color=060607&color=b26cff&line=b26cff&point=ffffff&area=true&hide_border=true&hide_title=true" 
-             alt="GitHub Activity Graph" 
-             class="activity-graph"
-             loading="lazy">
-      </div>
-    </section>
-
-    <footer class="footer">
-      <div class="footer__left">
-        <span class="muted">kernel_v6.8.0 // secure_boot_enabled</span>
-      </div>
-      <div class="footer__right">
-        <button id="musicToggle" class="vol-btn" title="Toggle Sound" aria-label="Toggle Sound">
-           <svg class="speaker-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#e0e0e0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
-        </button>
-        <input id="musicVol" class="vol" type="range" min="0" max="100" value="30" aria-label="Volume">
-      </div>
-    </footer>
-  </main>
-  
-  <script src="assets/js/starfield.js"></script>
-  <script src="assets/js/site.js"></script>
+      <section id="contact" class="contact-section"><div class="wrap contact-inner"><div><p class="eyebrow"><span>04 /</span> GET IN TOUCH</p><h2>Good ideas start<br>with a <em>conversation.</em></h2><p>For research, thoughtful collaboration, or simply to say hello.</p><a class="contact-mail" href="mailto:amirparsarabii@gmail.com">amirparsarabii@gmail.com <span aria-hidden="true">↗</span></a></div><div class="contact-side"><p class="card-label">FIND ME ELSEWHERE</p><div class="social-links"><a href="https://github.com/AmirInit" target="_blank" rel="noopener noreferrer">GitHub <span>↗</span></a><a href="https://www.researchgate.net/profile/Amirparsa-Rabiei" target="_blank" rel="noopener noreferrer">ResearchGate <span>↗</span></a><a href="https://t.me/bootparsa" target="_blank" rel="noopener noreferrer">Telegram <span>↗</span></a><a href="https://keyoxide.org/4DC5940B4423F1CF7AC8D633B195B11B9A7C37E4" target="_blank" rel="noopener noreferrer">PGP key <span>↗</span></a><span class="discord">Discord <strong>amirinit</strong></span></div><p class="external-note">External links open in a new tab.</p></div></div></section>
+    </main>
+    <footer class="footer wrap"><div><a class="footer-brand" href="#top">AMIRINIT<span>.</span></a><p>Research, systems, and a little curiosity.</p></div><div class="footer-extras"><details class="footer-detail"><summary>Support with Monero <span>+</span></summary><p>Monero address</p><code>48aepDYeCBYPrqVbxCap1YiNKHoQP8N5phhEEEPECyUAVs5VULNqTjzVVXKRQmW8UmjdAFgFQ5qZkfcpELZpbnKwCxKvxVi</code><button type="button" class="copy-address" hidden>Copy address</button><p class="copy-status" role="status" aria-live="polite"></p></details><details class="footer-detail"><summary>Background audio <span>+</span></summary><audio controls preload="none" aria-label="Background audio"><source src="assets/audio/bg.mp3" type="audio/mpeg">Your browser does not support audio playback.</audio></details></div><a class="back-top" href="#top">BACK TO TOP ↑</a></footer>
+  </div>
 </body>
 </html>
