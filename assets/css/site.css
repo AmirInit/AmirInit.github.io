@@ -34,7 +34,8 @@ body::before {
   background-size: 64px 64px;
   mask-image: linear-gradient(#000, transparent 90%);
 }
-#bg-canvas { position: fixed; inset: 0; width: 100%; height: 100%; opacity: .32; pointer-events: none; }
+#bg-canvas { position: fixed; inset: 0; z-index: 1; width: 100%; height: 100%; opacity: .48; pointer-events: none; }
+.topbar, .identity, .directory, .workspace-bar, .workspace-footer, .footer { position: relative; z-index: 2; }
 button, input { font: inherit; }
 a { color: inherit; }
 button, summary { cursor: pointer; }
@@ -82,14 +83,13 @@ h1, h2, h3, p { margin-top: 0; }
 .identity-role { margin-bottom: 1.25rem; color: #d5d9d3; font: 600 .66rem/1.5 var(--mono); letter-spacing: .1em; }
 .identity-role span { color: var(--green); margin: 0 .3rem; }
 .intro { max-width: 27rem; margin-bottom: 0; color: var(--muted); font-size: .97rem; line-height: 1.75; }
+.intro strong { color: var(--text); font-weight: 600; }
 .identity-actions { display: flex; flex-wrap: wrap; gap: .65rem; margin-top: 1.8rem; }
 .button { display: inline-flex; justify-content: space-between; align-items: center; gap: 1.6rem; min-height: 49px; padding: .8rem 1rem; border: 1px solid transparent; border-radius: 5px; font-size: .8rem; font-weight: 650; text-decoration: none; transition: transform .18s ease, background .18s ease, border-color .18s ease; }
 .button:hover { transform: translateY(-2px); }
 .button > span, .socials a span, .workspace-footer a span, .command-list kbd, .inline-link, .record-links a, .journal-back { font-family: var(--symbol); }
 .button-primary { background: var(--green); color: #13190f; }
 .button-primary:hover { background: #d4ff99; }
-.button-secondary { border-color: #4a5149; background: rgba(255,255,255,.015); }
-.button-secondary:hover { border-color: var(--green); }
 .at-glance { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; width: 100%; margin-top: auto; padding-top: 2rem; }
 .at-glance div { border-top: 1px solid #3e463b; padding-top: .75rem; }
 .at-glance span, .at-glance strong { display: block; }
