@@ -32,7 +32,7 @@
 #let researchgate = "https://www.researchgate.net/profile/Amirparsa-Rabiei"
 
 #text(size: 24pt, weight: "bold", fill: ink)[Amir Parsa Rabiei] \
-#text(size: 10pt, fill: muted)[AI Research · Cybersecurity · Systems Engineering]
+#text(size: 10pt, fill: muted)[AI / Security Engineer · Quantitative Finance]
 #v(5pt)
 #text(size: 8pt)[
   #link("mailto:amirparsarabii@gmail.com")[amirparsarabii\@gmail.com] #h(5pt) | #h(5pt)
@@ -42,7 +42,7 @@
 ]
 
 #section("PROFILE")
-Researcher and systems engineer interested in machine learning, cybersecurity, and the infrastructure behind reliable systems. Experience includes AI consulting and security operations, alongside research in language, networks, and computer vision.
+Researcher and systems engineer interested in machine learning, cybersecurity, quantitative finance, and the infrastructure behind reliable systems. Experience includes AI consulting and security operations, alongside research in language, networks, and computer vision.
 
 #section("PROFESSIONAL EXPERIENCE")
 #role("AI Consultant", "Deep Nex", "1402–1403 SH | approx. 2023–2025")[
@@ -71,5 +71,5 @@ Research on facial recognition with partial image data; International Congress o
 #text(weight: "bold", fill: ink)[Cybersecurity and information protection] — interview with ANA News Agency. #link(ana)[Interview]
 
 #section("FOCUS & EDUCATION")
-#text(weight: "bold", fill: ink)[Focus:] Machine learning, security operations, Linux and systems, Python, Rust, containers. \
+#text(weight: "bold", fill: ink)[Focus:] Machine learning, quantitative finance, security operations, Linux and systems, Python, Rust, containers. \
 #text(weight: "bold", fill: ink)[Education:] Software engineering studies, Islamic Azad University, Hamadan.
